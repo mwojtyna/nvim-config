@@ -353,6 +353,10 @@ require('lazy').setup({
   {
     "RRethy/vim-illuminate",
     event = "BufRead",
+    keys = {
+      { "]]", function() require("illuminate").goto_next_reference() end, desc = "Next reference" },
+      { "[[", function() require("illuminate").goto_prev_reference() end, desc = "Previous reference" },
+    },
     config = function()
       local opts = { bg = require("tokyonight.colors").moon().bg_highlight, }
       vim.api.nvim_set_hl(0, "IlluminatedWordRead", opts);

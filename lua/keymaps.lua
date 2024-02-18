@@ -63,10 +63,8 @@ vim.keymap.set("n", "<leader>c", ":tabc<CR>", { desc = "[C]lose tab" });
 vim.keymap.set("n", "]t", "gt", { desc = "Next tab" });
 vim.keymap.set("n", "[t", "gT", { desc = "Previous tab" });
 vim.keymap.set("t", "<M-q>", "<C-\\><C-n>");
+vim.keymap.set("n", "<leader>e", ":silent E<CR>", { silent = true });
 
--- Hightlight other word uses
-vim.keymap.set("n", "]]", require("illuminate").goto_next_reference, { desc = "Next reference" });
-vim.keymap.set("n", "[[", require("illuminate").goto_prev_reference, { desc = "Previous reference" });
 -- Don't overwrite register when pasting over a word
 vim.keymap.set("x", "p", "pgvy", { noremap = true });
 
