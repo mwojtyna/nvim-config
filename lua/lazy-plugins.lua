@@ -1,3 +1,4 @@
+-- [[ Configure plugin et
 -- [[ Configure plugins ]]
 -- NOTE: Here is where you install your plugins.
 --  You can configure plugins using the `config` key.
@@ -292,12 +293,8 @@ require('lazy').setup({
             direction = "float",
             float_opts = {
               width = function()
-                local width = vim.api.nvim_win_get_width(0);
+                local width = vim.o.co;
                 return width - math.floor(width / 7.5)
-              end,
-              height = function()
-                local height = vim.api.nvim_win_get_height(0);
-                return height - math.floor(height / 10)
               end,
             }
           })
@@ -358,7 +355,7 @@ require('lazy').setup({
       { "[[", function() require("illuminate").goto_prev_reference() end, desc = "Previous reference" },
     },
     config = function()
-      local opts = { bg = require("tokyonight.colors").moon().bg_highlight, }
+      local opts = { bg = require("tokyonight.colors").moon().bg_highlight }
       vim.api.nvim_set_hl(0, "IlluminatedWordRead", opts);
       vim.api.nvim_set_hl(0, "IlluminatedWordWrite", opts);
       vim.api.nvim_set_hl(0, "IlluminatedWordText", opts);
@@ -445,6 +442,75 @@ require('lazy').setup({
         save_on_toggle = true,
       }
     }
+  },
+
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      "3rd/image.nvim",              -- Optional image support in preview window: See `# Preview Mode` for more information
+    },
+    lazy = false,
+    keys = {
+      { "<leader>o", ":Neotree toggle<CR>", desc = "Open neotree" },
+    },
+    config = function()
+      -- If you want icons for diagnostic errors, you'll need to define them somewhere:
+      vim.fn.sign_define("DiagnosticSignError",
+        { text = " ", texthl = "DiagnosticSignError" })
+      vim.fn.sign_define("DiagnosticSignWarn",
+        { text = " ", texthl = "DiagnosticSignWarn" })
+      vim.fn.sign_define("DiagnosticSignInfo",
+        { text = " ", texthl = "DiagnosticSignInfo" })
+      vim.fn.sign_define("DiagnosticSignHint",
+        { text = "󰌵", texthl = "DiagnosticSignHint" })
+
+      require("neo-tree").setup({
+        default_component_configs = {
+          git_status = {
+            symbols = {
+              -- Change type
+              added     = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
+              modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
+              deleted   = "✖", -- this can only be used in the git_status source
+              renamed   = "󰁕", -- this can only be used in the git_status source
+              -- Status type
+              untracked = "",
+              ignored   = "",
+              unstaged  = "󰄱",
+              staged    = "",
+              conflict  = "",
+            }
+          },
+        },
+        window = {
+          position = "left",
+          width = 50,
+          mappings = {
+            ["l"] = "open",
+            ["h"] = "close_node",
+          }
+        },
+        filesystem = {
+          filtered_items = {
+            visible = true, -- when true, they will just be displayed differently than normal items
+            hide_dotfiles = true,
+            hide_gitignored = true,
+            hide_hidden = true, -- only works on Windows for hidden files/directories
+            never_show = {
+              ".DS_Store",
+              "thumbs.db",
+            },
+          },
+          follow_current_file = {
+            enabled = true, -- This will find and focus the file in the active buffer every time
+          },
+        },
+      })
+    end
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
