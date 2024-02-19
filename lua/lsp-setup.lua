@@ -18,25 +18,25 @@ local on_attach = function(_, bufnr)
   nmap('<leader>r', vim.lsp.buf.rename, '[R]ename')
   nmap('<leader>a', function()
     vim.lsp.buf.code_action { context = { only = { 'quickfix', 'refactor', 'source' } } }
-  end, 'Code [A]ction')
+  end, 'Code [a]ction')
   nmap("<leader>lf", vim.lsp.buf.format, "[F]ormat");
 
-  nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-  nmap('gD', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+  nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [d]efinition')
+  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [r]eferences')
+  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [i]mplementation')
+  nmap('gD', require('telescope.builtin').lsp_type_definitions, 'Type [d]efinition')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+  nmap('gD', vim.lsp.buf.declaration, '[G]oto [d]eclaration')
+  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [a]dd Folder')
+  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [r]emove Folder')
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
+  end, '[W]orkspace [l]ist folders')
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)

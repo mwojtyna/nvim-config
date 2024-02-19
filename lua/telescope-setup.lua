@@ -30,11 +30,11 @@ local function telescope_live_grep_open_files()
   }
 end
 vim.keymap.set('n', '<leader>fl', telescope_live_grep_open_files, { desc = '[F]ind in Open Files' })
-vim.keymap.set('n', '<leader>fs', require('telescope.builtin').find_files, { desc = '[F]ile [S]earch' })
+vim.keymap.set('n', '<leader>fs', require('telescope.builtin').find_files, { desc = '[F]ile [s]earch' })
 vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = '[F]ind recently [o]pened files' })
-vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep, { desc = '[F]ind by [W]ord' })
+vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep, { desc = '[F]ind by [w]ord' })
 vim.keymap.set('n', '<leader>f<Enter>', require('telescope.builtin').resume, { desc = '[F]ind resume' })
-vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]ind [H]elp' })
-vim.keymap.set('n', '<leader>fn', require('telescope').extensions.notify.notify, { desc = '[F]ind [N]otifications' })
+vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]ind [h]elp' })
+vim.keymap.set('n', '<leader>fn', require('telescope').extensions.notify.notify, { desc = '[F]ind [n]otifications' })
 
 -- vim: ts=2 sts=2 sw=2 et

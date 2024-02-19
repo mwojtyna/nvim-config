@@ -28,7 +28,7 @@ require('lazy').setup({
       {
         "<leader>gl",
         ":Git log<CR>",
-        desc = "Git [L]og",
+        desc = "Git [l]og",
       }
     }
   },
@@ -428,7 +428,7 @@ require('lazy').setup({
         end,
         desc = "[M]ark for harpoon list"
       },
-      { "<leader>h", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "Open [H]arpoon" },
+      { "<leader>h", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "Open [h]arpoon" },
       { "]b",        function() require("harpoon"):list():prev() end,                                   desc = "Previous harpoon mark" },
       { "]b",        function() require("harpoon"):list():next() end,                                   desc = "Next harpoon mark" },
       { "<leader>1", function() require("harpoon"):list():select(1) end,                                desc = "which_key_ignore" },
