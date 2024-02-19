@@ -10,24 +10,23 @@ require('lazy').setup({
 
   -- Git related plugins
   {
-    "NeogitOrg/neogit",
-    cmd = { "Neogit" },
+    "tpope/vim-fugitive",
+    cmd = { "Git", "Gdiffsplit", "Gvdiffsplit" },
     keys = {
-      { "<leader>gg", function() require("neogit").open() end, desc = "Open neogit" }
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim", -- required
       {
-        "sindrets/diffview.nvim",
-        keys = {
-          { "<leader>gd", function() require("diffview").open({}) end, desc = "Git diff" }
-        }
+        "<leader>gg",
+        function()
+          local cmd = ":Git<CR>";
+          vim.api.nvim_input(vim.o.co > 150 and cmd .. "<C-w><S-l>" or cmd);
+        end,
+        desc = "Open Fugitive"
       },
-
-      -- Only one of these is needed, not both.
-      "nvim-telescope/telescope.nvim", -- optional
-    },
-    opts = {},
+      {
+        "<leader>gd",
+        ":Gvdiffsplit!<CR>",
+        desc = "Open [D]iff view",
+      },
+    }
   },
 
   -- Detect tabstop and shiftwidth automatically
@@ -171,17 +170,9 @@ require('lazy').setup({
   },
 
   {
-    'AstroNvim/astrotheme',
-    enabled = false,
-    priority = 1000,
-    lazy = false,
-    config = function()
-      require("astrotheme").setup({})
-    end
-  },
-  {
     "folke/tokyonight.nvim",
     lazy = false,
+    priority = 1000,
     config = function()
       require("tokyonight").setup({
         style = "night",
@@ -427,7 +418,14 @@ require('lazy').setup({
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "<leader>m", function() require("harpoon"):list():append() end,                                 desc = "[M]ark for harpoon list" },
+      {
+        "<leader>m",
+        function()
+          require("harpoon"):list():append();
+          vim.notify("Added to harpoon", vim.log.levels.INFO);
+        end,
+        desc = "[M]ark for harpoon list"
+      },
       { "<leader>h", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "Open [H]arpoon" },
       { "]b",        function() require("harpoon"):list():prev() end,                                   desc = "Previous harpoon mark" },
       { "]b",        function() require("harpoon"):list():next() end,                                   desc = "Next harpoon mark" },
@@ -510,6 +508,15 @@ require('lazy').setup({
           },
         },
       })
+    end
+  },
+
+  {
+    "rcarriga/nvim-notify",
+    lazy = false,
+    config = function()
+      require("notify").setup();
+      vim.notify = require("notify");
     end
   },
 
