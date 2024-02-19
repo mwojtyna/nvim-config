@@ -405,12 +405,9 @@ require('lazy').setup({
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
-    config = function()
-      require("lsp_signature").setup({
-        hint_enable = false,
-        toggle_key = "<C-p>",
-      })
-    end,
+    opts = {
+      hint_enable = false,
+    }
   },
 
   {
@@ -551,6 +548,17 @@ require('lazy').setup({
     dependencies = { "nvim-lua/plenary.nvim" },
     event = "BufRead",
     opts = {},
+  },
+
+  {
+    "mbbill/undotree",
+    keys = {
+      { "<leader>fu", "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>", desc = "Undo tree" },
+    },
+    config = function()
+      vim.g.undotree_WindowLayout = 3
+      vim.g.undotree_SplitWidth = 40
+    end,
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
