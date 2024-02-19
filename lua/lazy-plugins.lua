@@ -287,6 +287,10 @@ require('lazy').setup({
                 local width = vim.o.co;
                 return width - math.floor(width / 7.5)
               end,
+              height = function()
+                local height = vim.o.lines;
+                return height - math.floor(height / 10);
+              end
             }
           })
           btm:toggle();
@@ -492,7 +496,7 @@ require('lazy').setup({
         filesystem = {
           filtered_items = {
             visible = true, -- when true, they will just be displayed differently than normal items
-            hide_dotfiles = true,
+            hide_dotfiles = false,
             hide_gitignored = true,
             hide_hidden = true, -- only works on Windows for hidden files/directories
             never_show = {
