@@ -6,8 +6,6 @@
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
-  -- NOTE: First, some plugins that don't require any configuration
-
   {
     "tpope/vim-fugitive",
     cmd = { "Git", "Gdiffsplit", "Gvdiffsplit" },
@@ -520,6 +518,39 @@ require('lazy').setup({
       require("notify").setup();
       vim.notify = require("notify");
     end
+  },
+
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      { "<leader>xx", function() require("trouble").toggle() end,           desc = "Toggle menu" },
+      {
+        "<leader>xw",
+        function() require("trouble").toggle("workspace_diagnostics") end,
+        desc = "Toggle workspace diagnostics menu",
+      },
+      {
+        "<leader>xd",
+        function() require("trouble").toggle("document_diagnostics") end,
+        desc = "Toggle document diagnostics menu",
+      },
+      { "<leader>xq", function() require("trouble").toggle("quickfix") end, desc = "Toggle quickfix menu" },
+      { "<leader>xl", function() require("trouble").toggle("loclist") end,  desc = "Toggle location list menu" },
+      { "<leader>xt", function() require("trouble").toggle("todo") end,     desc = "Toggle todo list" },
+    },
+    opts = {
+      height = 20,
+      width = 87,
+      position = "bottom",
+    },
+  },
+
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = "BufRead",
+    opts = {},
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
