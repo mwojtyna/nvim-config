@@ -59,7 +59,7 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>");
 
 -- Misc
 vim.keymap.set("n", "<C-s>", ":w<CR>", { silent = true });
-vim.keymap.set("n", "<leader>c", "<C-w><C-o>", { desc = "[C]lose diff" });
+vim.keymap.set("n", "<leader>c", "<C-w><C-h>:q!<CR>", { desc = "[C]lose diff" });
 vim.keymap.set("n", "]t", "gt", { desc = "Next tab" });
 vim.keymap.set("n", "[t", "gT", { desc = "Previous tab" });
 vim.keymap.set("t", "<M-q>", "<C-\\><C-n>");

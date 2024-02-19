@@ -8,7 +8,6 @@
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
-  -- Git related plugins
   {
     "tpope/vim-fugitive",
     cmd = { "Git", "Gdiffsplit", "Gvdiffsplit" },
@@ -17,15 +16,20 @@ require('lazy').setup({
         "<leader>gg",
         function()
           local cmd = ":Git<CR>";
-          vim.api.nvim_input(vim.o.co > 150 and cmd .. "<C-w><S-l>" or cmd);
+          vim.api.nvim_input(require("utils").is_wide() and cmd .. "<C-w><S-l>" or cmd);
         end,
         desc = "Open Fugitive"
       },
       {
         "<leader>gd",
         ":Gvdiffsplit!<CR>",
-        desc = "Open [D]iff view",
+        desc = "[D]iff view",
       },
+      {
+        "<leader>gl",
+        ":Git log<CR>",
+        desc = "Git [L]og",
+      }
     }
   },
 
@@ -151,9 +155,7 @@ require('lazy').setup({
         -- map('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
         -- map('n', '<leader>hR', gs.reset_buffer, { desc = 'git Reset buffer' })
         map('n', '<leader>gp', gs.preview_hunk, { desc = 'Preview hunk' })
-        map('n', '<leader>gb', function()
-          gs.blame_line { full = false }
-        end, { desc = 'Blame line' })
+        map('n', '<leader>gb', function() gs.blame_line { full = false } end, { desc = 'Blame line' })
         -- map('n', '<leader>gd', gs.diffthis, { desc = 'Git diff' })
         -- map('n', '<leader>gD', function()
         --   gs.diffthis '~'
@@ -161,7 +163,7 @@ require('lazy').setup({
 
         -- Toggles
         -- map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
-        map('n', '<leader>td', gs.toggle_deleted, { desc = 'Toggle git show deleted' })
+        -- map('n', '<leader>td', gs.toggle_deleted, { desc = 'Toggle git show deleted' })
 
         -- Text object
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'Select git hunk' })
