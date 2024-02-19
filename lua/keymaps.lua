@@ -30,8 +30,9 @@ require('which-key').register({
   ['<leader>g'] = { '[G]it hunk' },
 }, { mode = 'v' })
 
--- Also save on :W
+-- I can't type properly
 vim.cmd.command("W :w");
+vim.cmd.command("Q :q");
 
 -- Clear search highlights
 vim.keymap.set("n", "<Esc>", ":noh<CR>", { silent = true });
