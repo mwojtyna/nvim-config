@@ -31,10 +31,10 @@ cmp.setup({
       select = true,
     }),
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
-      elseif copilot.is_visible() then
+      if copilot.is_visible() then
         copilot.accept()
+      elseif luasnip.expand_or_locally_jumpable() then
+        luasnip.expand_or_jump()
       else
         fallback()
       end

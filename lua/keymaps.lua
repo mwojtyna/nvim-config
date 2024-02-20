@@ -11,7 +11,18 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>d", function()
+  vim.diagnostic.open_float({
+    ---@param opts { source: string, message: string }
+    format = function(opts)
+      -- Remove the trailing dot from opts.source (luals has it)
+      if opts.source:sub(-1) == "." then
+        opts.source = opts.source:sub(1, -2)
+      end
+      return opts.source .. ": " .. opts.message
+    end,
+  })
+end, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- document existing key chains
