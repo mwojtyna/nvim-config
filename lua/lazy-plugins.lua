@@ -434,12 +434,6 @@ require("lazy").setup({
       { "<leader>o", ":Neotree toggle<CR>", desc = "Open neotree" },
     },
     config = function()
-      -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-      vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-      vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-      vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-      vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
-
       require("neo-tree").setup({
         default_component_configs = {
           git_status = {
@@ -480,6 +474,10 @@ require("lazy").setup({
           follow_current_file = {
             enabled = true, -- This will find and focus the file in the active buffer every time
           },
+        },
+        event_handlers = {
+          { event = require("neo-tree.events").FILE_MOVED, handler = require("utils").on_file_remove },
+          { event = require("neo-tree.events").FILE_RENAMED, handler = require("utils").on_file_remove },
         },
       })
     end,
@@ -553,6 +551,12 @@ require("lazy").setup({
     opts = {
       suggestion = { auto_trigger = true },
     },
+  },
+
+  {
+    "dmmulroy/tsc.nvim",
+    cmd = { "TSC" },
+    opts = {},
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart

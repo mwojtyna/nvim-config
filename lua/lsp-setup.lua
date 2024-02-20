@@ -17,7 +17,13 @@ local on_attach = function(_, bufnr)
 
   nmap("<leader>r", vim.lsp.buf.rename, "[R]ename")
   nmap("<leader>a", function() vim.lsp.buf.code_action({ context = { only = { "quickfix", "refactor", "source" } } }) end, "Code [a]ction")
-  nmap("<leader>lf", vim.lsp.buf.format, "[F]ormat")
+  nmap("<leader>lf", function()
+    vim.lsp.buf.format({
+      bufnr = bufnr,
+      -- Use the filter function to explictly notify when no clients matched
+      filter = function(client) return not vim.tbl_contains(require("utils").disable_format, client.name) end,
+    })
+  end, "[F]ormat")
 
   nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [d]efinition")
   nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [r]eferences")
@@ -62,11 +68,9 @@ require("mason-null-ls").setup({
 
 -- Add LSPs here
 local servers = {
-
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
-      format = { enable = false },
       -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
       -- diagnostics = { disable = { 'missing-fields' } },
     },
@@ -74,7 +78,6 @@ local servers = {
 
   jsonls = {
     json = {
-      format = { enable = false },
       schemas = require("schemastore").json.schemas(),
       validate = { enable = true },
     },
@@ -94,6 +97,7 @@ local servers = {
 
   html = { filetypes = { "html", "twig", "hbs" } },
   cssls = {},
+  tsserver = {},
 }
 
 -- Setup neovim lua configuration
