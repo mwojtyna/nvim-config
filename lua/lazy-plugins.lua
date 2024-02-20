@@ -1,11 +1,7 @@
--- [[ Configure plugin et
 -- [[ Configure plugins ]]
--- NOTE: Here is where you install your plugins.
---  You can configure plugins using the `config` key.
---
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
-require('lazy').setup({
+require("lazy").setup({
   {
     "tpope/vim-fugitive",
     cmd = { "Git", "Gdiffsplit", "Gvdiffsplit" },
@@ -13,10 +9,10 @@ require('lazy').setup({
       {
         "<leader>gg",
         function()
-          local cmd = ":Git<CR>";
-          vim.api.nvim_input(require("utils").is_wide() and cmd .. "<C-w><S-l>" or cmd);
+          local cmd = ":Git<CR>"
+          vim.api.nvim_input(require("utils").is_wide() and cmd .. "<C-w><S-l>" or cmd)
         end,
-        desc = "Open Fugitive"
+        desc = "Open Fugitive",
       },
       {
         "<leader>gd",
@@ -27,84 +23,83 @@ require('lazy').setup({
         "<leader>gl",
         ":Git log<CR>",
         desc = "Git [l]og",
-      }
-    }
+      },
+    },
   },
 
   -- Detect tabstop and shiftwidth automatically
   {
-    'tpope/vim-sleuth',
+    "tpope/vim-sleuth",
     event = "BufRead",
   },
 
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
   {
     -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
+    "neovim/nvim-lspconfig",
     event = "BufRead",
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
-      { 'williamboman/mason.nvim', opts = {} },
-      'williamboman/mason-lspconfig.nvim',
+      { "williamboman/mason.nvim", opts = {} },
+      "nvimtools/none-ls.nvim",
+      "jay-babu/mason-null-ls.nvim",
+      "williamboman/mason-lspconfig.nvim",
       "b0o/schemastore.nvim",
 
       -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       {
-        'j-hui/fidget.nvim',
-        opts = {}
+        "j-hui/fidget.nvim",
+        opts = {},
       },
 
       -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
+      "folke/neodev.nvim",
     },
   },
 
   {
     -- Autocompletion
-    'hrsh7th/nvim-cmp',
+    "hrsh7th/nvim-cmp",
     event = "BufRead",
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       {
-        'L3MON4D3/LuaSnip',
+        "L3MON4D3/LuaSnip",
         build = (function()
           -- Build Step is needed for regex support in snippets
           -- This step is not supported in many windows environments
           -- Remove the below condition to re-enable on windows
-          if vim.fn.has 'win32' == 1 then
+          if vim.fn.has("win32") == 1 then
             return
           end
-          return 'make install_jsregexp'
+          return "make install_jsregexp"
         end)(),
       },
-      'saadparwaiz1/cmp_luasnip',
+      "saadparwaiz1/cmp_luasnip",
 
       -- Adds LSP completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-buffer',
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
 
       -- Adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
+      "rafamadriz/friendly-snippets",
     },
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { "folke/which-key.nvim", opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
+    "lewis6991/gitsigns.nvim",
     event = "BufRead",
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
+        add = { text = "+" },
+        change = { text = "~" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
       },
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
@@ -116,44 +111,36 @@ require('lazy').setup({
         end
 
         -- Navigation
-        map({ 'n', 'v' }, ']g', function()
+        map({ "n", "v" }, "]g", function()
           if vim.wo.diff then
-            return ']g'
+            return "]g"
           end
-          vim.schedule(function()
-            gs.next_hunk()
-          end)
-          return '<Ignore>'
-        end, { expr = true, desc = 'Jump to next hunk' })
+          vim.schedule(function() gs.next_hunk() end)
+          return "<Ignore>"
+        end, { expr = true, desc = "Jump to next hunk" })
 
-        map({ 'n', 'v' }, '[g', function()
+        map({ "n", "v" }, "[g", function()
           if vim.wo.diff then
-            return '[g'
+            return "[g"
           end
-          vim.schedule(function()
-            gs.prev_hunk()
-          end)
-          return '<Ignore>'
-        end, { expr = true, desc = 'Jump to previous hunk' })
+          vim.schedule(function() gs.prev_hunk() end)
+          return "<Ignore>"
+        end, { expr = true, desc = "Jump to previous hunk" })
 
         -- Actions
         -- visual mode
-        map('v', '<leader>gs', function()
-          gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = 'Stage git hunk' })
-        map('v', '<leader>gh', function()
-          gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = 'Reset git hunk' })
+        map("v", "<leader>gs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Stage git hunk" })
+        map("v", "<leader>gh", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Reset git hunk" })
         -- normal mode
-        map("n", "<leader>gh", gs.reset_hunk, { desc = "Reset hunk" });
-        map("n", "<leader>gr", gs.reset_buffer, { desc = "Reset buffer" });
-        map('n', '<leader>gs', gs.stage_hunk, { desc = 'Stage hunk' })
+        map("n", "<leader>gh", gs.reset_hunk, { desc = "Reset hunk" })
+        map("n", "<leader>gr", gs.reset_buffer, { desc = "Reset buffer" })
+        map("n", "<leader>gs", gs.stage_hunk, { desc = "Stage hunk" })
         -- map('n', '<leader>hr', gs.reset_hunk, { desc = 'git reset hunk' })
         -- map('n', '<leader>hS', gs.stage_buffer, { desc = 'git Stage buffer' })
         -- map('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
         -- map('n', '<leader>hR', gs.reset_buffer, { desc = 'git Reset buffer' })
-        map('n', '<leader>gp', gs.preview_hunk, { desc = 'Preview hunk' })
-        map('n', '<leader>gb', function() gs.blame_line { full = false } end, { desc = 'Blame line' })
+        map("n", "<leader>gp", gs.preview_hunk, { desc = "Preview hunk" })
+        map("n", "<leader>gb", function() gs.blame_line({ full = false }) end, { desc = "Blame line" })
         -- map('n', '<leader>gd', gs.diffthis, { desc = 'Git diff' })
         -- map('n', '<leader>gD', function()
         --   gs.diffthis '~'
@@ -164,7 +151,7 @@ require('lazy').setup({
         -- map('n', '<leader>td', gs.toggle_deleted, { desc = 'Toggle git show deleted' })
 
         -- Text object
-        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'Select git hunk' })
+        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select git hunk" })
       end,
     },
   },
@@ -177,126 +164,124 @@ require('lazy').setup({
       require("tokyonight").setup({
         style = "night",
         terminal_colors = false,
-      });
+      })
       vim.cmd.colorscheme("tokyonight")
     end,
   },
 
   {
     -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
+    "nvim-lualine/lualine.nvim",
     -- See `:help lualine.txt`
     event = "VeryLazy",
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      local lualine = require("lualine");
+      local lualine = require("lualine")
 
       lualine.setup({
         options = {
           icons_enabled = true,
-          theme = 'auto',
-          component_separators = '|',
-          section_separators = '',
+          theme = "auto",
+          component_separators = "|",
+          section_separators = "",
         },
-      });
-      local config = lualine.get_config();
-      table.insert(config.sections.lualine_c, { "searchcount" });
+      })
+      local config = lualine.get_config()
+      table.insert(config.sections.lualine_c, { "searchcount" })
 
-      lualine.setup(config);
-    end
+      lualine.setup(config)
+    end,
   },
 
   {
     -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
+    "lukas-reineke/indent-blankline.nvim",
     event = "BufRead",
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
-    main = 'ibl',
+    main = "ibl",
     opts = {
       indent = {
         char = "▏",
       },
       scope = { enabled = true },
-    }
+    },
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {}, event = "BufRead" },
+  { "numToStr/Comment.nvim", opts = {}, event = "BufRead" },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
-    'nvim-telescope/telescope.nvim',
+    "nvim-telescope/telescope.nvim",
     event = "VeryLazy",
-    branch = '0.1.x',
+    branch = "0.1.x",
     dependencies = {
-      'nvim-lua/plenary.nvim',
+      "nvim-lua/plenary.nvim",
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
       -- Only load if `make` is available. Make sure you have the system
       -- requirements installed.
       {
-        'nvim-telescope/telescope-fzf-native.nvim',
+        "nvim-telescope/telescope-fzf-native.nvim",
         -- NOTE: If you are having trouble with this installation,
         --       refer to the README for telescope-fzf-native for more instructions.
-        build = 'make',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
+        build = "make",
+        cond = function() return vim.fn.executable("make") == 1 end,
       },
     },
   },
 
   {
     -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
+    "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
+      "nvim-treesitter/nvim-treesitter-textobjects",
     },
-    build = ':TSUpdate',
+    build = ":TSUpdate",
   },
 
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
-    opts = {}
+    opts = {},
   },
 
   {
-    'stevearc/dressing.nvim',
+    "stevearc/dressing.nvim",
     event = "VeryLazy",
     opts = {},
   },
 
   {
-    'akinsho/toggleterm.nvim',
+    "akinsho/toggleterm.nvim",
     version = "*",
     -- event = "VeryLazy",
     keys = {
       {
         "<leader>tb",
         function()
-          local Terminal = require('toggleterm.terminal').Terminal
+          local Terminal = require("toggleterm.terminal").Terminal
           local btm = Terminal:new({
             cmd = "btm",
             hidden = true,
             direction = "float",
             float_opts = {
               width = function()
-                local width = vim.o.co;
+                local width = vim.o.co
                 return width - math.floor(width / 7.5)
               end,
               height = function()
-                local height = vim.o.lines;
-                return height - math.floor(height / 10);
-              end
-            }
+                local height = vim.o.lines
+                return height - math.floor(height / 10)
+              end,
+            },
           })
-          btm:toggle();
+          btm:toggle()
         end,
-        desc = "btm"
-      }
+        desc = "btm",
+      },
     },
     opts = {},
   },
@@ -329,15 +314,15 @@ require('lazy').setup({
   {
     "echasnovski/mini.splitjoin",
     keys = {
-      { "<leader>s", function() require("mini.splitjoin").toggle() end, desc = "[S]plit/join" }
+      { "<leader>s", function() require("mini.splitjoin").toggle() end, desc = "[S]plit/join" },
     },
     opts = {},
   },
 
   {
-    'nguyenvukhang/nvim-toggler',
+    "nguyenvukhang/nvim-toggler",
     keys = {
-      { "<leader>i", function() require("nvim-toggler").toggle() end, desc = "[I]nvert word meaning" }
+      { "<leader>i", function() require("nvim-toggler").toggle() end, desc = "[I]nvert word meaning" },
     },
     opts = {},
   },
@@ -351,45 +336,40 @@ require('lazy').setup({
     },
     config = function()
       local opts = { bg = require("tokyonight.colors").moon().bg_highlight }
-      vim.api.nvim_set_hl(0, "IlluminatedWordRead", opts);
-      vim.api.nvim_set_hl(0, "IlluminatedWordWrite", opts);
-      vim.api.nvim_set_hl(0, "IlluminatedWordText", {});
+      vim.api.nvim_set_hl(0, "IlluminatedWordRead", opts)
+      vim.api.nvim_set_hl(0, "IlluminatedWordWrite", opts)
+      vim.api.nvim_set_hl(0, "IlluminatedWordText", {})
 
       require("illuminate").configure({})
     end,
   },
 
   {
-    'kevinhwang91/nvim-ufo',
+    "kevinhwang91/nvim-ufo",
     event = "LspAttach",
     dependencies = {
-      'kevinhwang91/promise-async',
+      "kevinhwang91/promise-async",
       {
         "luukvbaal/statuscol.nvim",
         config = function()
           local builtin = require("statuscol.builtin")
-          require("statuscol").setup(
-            {
-              relculright = true,
-              segments = {
-                { text = { builtin.foldfunc },           click = "v:lua.ScFa" },
-                { text = { " ", builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-                { text = { "%s" },                       click = "v:lua.ScSa" },
-              }
-            }
-          )
-        end
-
-      }
+          require("statuscol").setup({
+            relculright = true,
+            segments = {
+              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+              { text = { " ", builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+              { text = { "%s" }, click = "v:lua.ScSa" },
+            },
+          })
+        end,
+      },
     },
     opts = {},
   },
 
   {
     "hiphish/rainbow-delimiters.nvim",
-    config = function()
-      require("rainbow-delimiters.setup").setup({});
-    end
+    config = function() require("rainbow-delimiters.setup").setup({}) end,
   },
 
   {
@@ -411,7 +391,7 @@ require('lazy').setup({
     event = "BufRead",
     opts = {
       hint_enable = false,
-    }
+    },
   },
 
   {
@@ -422,25 +402,25 @@ require('lazy').setup({
       {
         "<leader>m",
         function()
-          require("harpoon"):list():append();
-          vim.notify("Added to harpoon", vim.log.levels.INFO);
+          require("harpoon"):list():append()
+          vim.notify("Added to harpoon", vim.log.levels.INFO)
         end,
-        desc = "[M]ark for harpoon list"
+        desc = "[M]ark for harpoon list",
       },
       { "<leader>h", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "Open [h]arpoon" },
-      { "]b",        function() require("harpoon"):list():prev() end,                                   desc = "Previous harpoon mark" },
-      { "]b",        function() require("harpoon"):list():next() end,                                   desc = "Next harpoon mark" },
-      { "<leader>1", function() require("harpoon"):list():select(1) end,                                desc = "which_key_ignore" },
-      { "<leader>2", function() require("harpoon"):list():select(2) end,                                desc = "which_key_ignore" },
-      { "<leader>3", function() require("harpoon"):list():select(3) end,                                desc = "which_key_ignore" },
-      { "<leader>4", function() require("harpoon"):list():select(4) end,                                desc = "which_key_ignore" },
-      { "<leader>5", function() require("harpoon"):list():select(5) end,                                desc = "which_key_ignore" },
+      { "]b", function() require("harpoon"):list():prev() end, desc = "Previous harpoon mark" },
+      { "]b", function() require("harpoon"):list():next() end, desc = "Next harpoon mark" },
+      { "<leader>1", function() require("harpoon"):list():select(1) end, desc = "which_key_ignore" },
+      { "<leader>2", function() require("harpoon"):list():select(2) end, desc = "which_key_ignore" },
+      { "<leader>3", function() require("harpoon"):list():select(3) end, desc = "which_key_ignore" },
+      { "<leader>4", function() require("harpoon"):list():select(4) end, desc = "which_key_ignore" },
+      { "<leader>5", function() require("harpoon"):list():select(5) end, desc = "which_key_ignore" },
     },
     opts = {
       settings = {
         save_on_toggle = true,
-      }
-    }
+      },
+    },
   },
 
   {
@@ -450,7 +430,7 @@ require('lazy').setup({
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
-      "3rd/image.nvim",              -- Optional image support in preview window: See `# Preview Mode` for more information
+      "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     lazy = false,
     keys = {
@@ -458,31 +438,27 @@ require('lazy').setup({
     },
     config = function()
       -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-      vim.fn.sign_define("DiagnosticSignError",
-        { text = " ", texthl = "DiagnosticSignError" })
-      vim.fn.sign_define("DiagnosticSignWarn",
-        { text = " ", texthl = "DiagnosticSignWarn" })
-      vim.fn.sign_define("DiagnosticSignInfo",
-        { text = " ", texthl = "DiagnosticSignInfo" })
-      vim.fn.sign_define("DiagnosticSignHint",
-        { text = "󰌵", texthl = "DiagnosticSignHint" })
+      vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
+      vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
+      vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
+      vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
 
       require("neo-tree").setup({
         default_component_configs = {
           git_status = {
             symbols = {
               -- Change type
-              added     = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
-              modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
-              deleted   = "✖", -- this can only be used in the git_status source
-              renamed   = "󰁕", -- this can only be used in the git_status source
+              added = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
+              modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+              deleted = "✖", -- this can only be used in the git_status source
+              renamed = "󰁕", -- this can only be used in the git_status source
               -- Status type
               untracked = "",
-              ignored   = "",
-              unstaged  = "󰄱",
-              staged    = "",
-              conflict  = "",
-            }
+              ignored = "",
+              unstaged = "󰄱",
+              staged = "",
+              conflict = "",
+            },
           },
         },
         window = {
@@ -491,7 +467,7 @@ require('lazy').setup({
           mappings = {
             ["l"] = "open",
             ["h"] = "close_node",
-          }
+          },
         },
         filesystem = {
           filtered_items = {
@@ -509,23 +485,23 @@ require('lazy').setup({
           },
         },
       })
-    end
+    end,
   },
 
   {
     "rcarriga/nvim-notify",
     lazy = false,
     config = function()
-      require("notify").setup();
-      vim.notify = require("notify");
-    end
+      require("notify").setup()
+      vim.notify = require("notify")
+    end,
   },
 
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader>xx", function() require("trouble").toggle() end,           desc = "Toggle menu" },
+      { "<leader>xx", function() require("trouble").toggle() end, desc = "Toggle menu" },
       {
         "<leader>xw",
         function() require("trouble").toggle("workspace_diagnostics") end,
@@ -537,8 +513,8 @@ require('lazy').setup({
         desc = "Toggle document diagnostics menu",
       },
       { "<leader>xq", function() require("trouble").toggle("quickfix") end, desc = "Toggle quickfix menu" },
-      { "<leader>xl", function() require("trouble").toggle("loclist") end,  desc = "Toggle location list menu" },
-      { "<leader>xt", function() require("trouble").toggle("todo") end,     desc = "Toggle todo list" },
+      { "<leader>xl", function() require("trouble").toggle("loclist") end, desc = "Toggle location list menu" },
+      { "<leader>xt", function() require("trouble").toggle("todo") end, desc = "Toggle todo list" },
     },
     opts = {
       height = 20,
@@ -575,7 +551,7 @@ require('lazy').setup({
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  require('kickstart.plugins.autoformat'),
+  require("kickstart.plugins.autoformat"),
   -- require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
