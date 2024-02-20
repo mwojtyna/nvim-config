@@ -548,6 +548,15 @@ require("lazy").setup({
     build = function() vim.fn["mkdp#util#install"]() end,
   },
 
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "BufRead",
+    opts = {
+      suggestion = { auto_trigger = true },
+    },
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.

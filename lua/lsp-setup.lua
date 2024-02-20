@@ -33,26 +33,13 @@ local on_attach = function(_, bufnr)
   nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [a]dd Folder")
   nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [r]emove Folder")
   nmap("<leader>wl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "[W]orkspace [l]ist folders")
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_) vim.lsp.buf.format() end, { desc = "Format current buffer with LSP" })
 end
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
 require("mason").setup()
 require("mason-lspconfig").setup()
-
 require("null-ls").setup()
--- Add linters and formatters here to connect them to neovim
----@diagnostic disable-next-line: missing-fields
-require("mason-null-ls").setup({
-  automatic_installation = false,
-  handlers = {},
-  ensure_installed = {
-    "stylua",
-  },
-})
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -62,6 +49,19 @@ require("mason-null-ls").setup({
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
+
+-- Add linters and formatters here
+---@diagnostic disable-next-line: missing-fields
+require("mason-null-ls").setup({
+  automatic_installation = false,
+  handlers = {},
+  ensure_installed = {
+    -- lua
+    "stylua",
+  },
+})
+
+-- Add LSPs here
 local servers = {
   -- clangd = {},
   -- gopls = {},

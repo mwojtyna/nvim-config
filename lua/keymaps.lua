@@ -32,8 +32,8 @@ require("which-key").register({
 }, { mode = "v" })
 
 -- I can't type properly
-vim.cmd.command("W :w")
-vim.cmd.command("Q :q")
+vim.api.nvim_create_user_command("W", ":w", {})
+vim.api.nvim_create_user_command("Q", ":q", {})
 
 -- Clear search highlights
 vim.keymap.set("n", "<Esc>", ":noh<CR>", { silent = true })
