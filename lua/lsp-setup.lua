@@ -49,7 +49,6 @@ end
 -- before setting up the servers.
 require("mason").setup()
 require("mason-lspconfig").setup()
-require("null-ls").setup()
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -61,17 +60,18 @@ require("null-ls").setup()
 --  define the property 'filetypes' to the map in question.
 
 -- Add linters and formatters here
+local null_ls = require("null-ls")
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.prettierd,
+  },
+})
 ---@diagnostic disable-next-line: missing-fields
 require("mason-null-ls").setup({
-  automatic_installation = false,
-  handlers = {},
-  ensure_installed = {
-    "stylua",
-    -- NOTE: prettierd does read the config when changed (need to pkill prettierd),
-    -- also spawns a new process for each nested config file and reads the nested config correctly
-    -- editorconfig tabwidth only changes how wide vim shows the tabs, doesn't actually change their width
-    "prettierd",
-  },
+  ---@diagnostic disable-next-line: assign-type-mismatch
+  ensure_installed = nil,
+  automatic_installation = true,
 })
 
 -- Add LSPs here
@@ -106,6 +106,7 @@ local servers = {
   html = { filetypes = { "html", "twig", "hbs" } },
   cssls = {},
   tsserver = {},
+  eslint = {},
   tailwindcss = {},
 }
 

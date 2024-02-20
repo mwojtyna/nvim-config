@@ -59,7 +59,7 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
 
--- Misc
+-- For convience
 vim.keymap.set("n", "<C-s>", ":w<CR>", { silent = true })
 vim.keymap.set("n", "<leader>c", "<C-w><C-h>:q!<CR>", { desc = "[C]lose diff" })
 vim.keymap.set("n", "]t", "gt", { desc = "Next tab" })
@@ -67,6 +67,7 @@ vim.keymap.set("n", "[t", "gT", { desc = "Previous tab" })
 vim.keymap.set("t", "<M-q>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Buffer [d]elete" })
 vim.keymap.set("n", "<C-a>", "ggVG")
+vim.api.nvim_create_user_command("E", ":EslintFixAll", {})
 
 -- Don't overwrite register when pasting over a word
 vim.keymap.set("x", "p", "pgvy", { noremap = true })
