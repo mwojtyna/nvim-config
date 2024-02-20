@@ -16,6 +16,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- document existing key chains
 require('which-key').register {
+  ['<leader>b'] = { name = '[B]uffer', _ = 'which_key_ignore' },
   ['<leader>f'] = { name = '[F]ind', _ = 'which_key_ignore' },
   ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
   ['<leader>l'] = { name = '[L]SP', _ = 'which_key_ignore' },
@@ -64,6 +65,7 @@ vim.keymap.set("n", "<leader>c", "<C-w><C-h>:q!<CR>", { desc = "[C]lose diff" })
 vim.keymap.set("n", "]t", "gt", { desc = "Next tab" });
 vim.keymap.set("n", "[t", "gT", { desc = "Previous tab" });
 vim.keymap.set("t", "<M-q>", "<C-\\><C-n>");
+vim.keymap.set("n", "<leader>bc", ":bd<CR>", { desc = "Buffer [c]lose" });
 
 -- Don't overwrite register when pasting over a word
 vim.keymap.set("x", "p", "pgvy", { noremap = true });

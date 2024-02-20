@@ -353,7 +353,7 @@ require('lazy').setup({
       local opts = { bg = require("tokyonight.colors").moon().bg_highlight }
       vim.api.nvim_set_hl(0, "IlluminatedWordRead", opts);
       vim.api.nvim_set_hl(0, "IlluminatedWordWrite", opts);
-      vim.api.nvim_set_hl(0, "IlluminatedWordText", opts);
+      vim.api.nvim_set_hl(0, "IlluminatedWordText", {});
 
       require("illuminate").configure({})
     end,
@@ -557,12 +557,19 @@ require('lazy').setup({
   {
     "mbbill/undotree",
     keys = {
-      { "<leader>fu", "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>", desc = "Undo tree" },
+      { "<leader>fu", "<CMD>UndotreeToggle<CR><CMD>UndotreeFocus<CR>", desc = "Undo tree" },
     },
     config = function()
       vim.g.undotree_WindowLayout = 3
       vim.g.undotree_SplitWidth = 40
     end,
+  },
+
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
