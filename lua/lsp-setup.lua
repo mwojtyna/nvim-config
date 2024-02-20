@@ -56,19 +56,12 @@ require("mason-null-ls").setup({
   automatic_installation = false,
   handlers = {},
   ensure_installed = {
-    -- lua
     "stylua",
   },
 })
 
 -- Add LSPs here
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
     Lua = {
@@ -78,6 +71,29 @@ local servers = {
       -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
+
+  jsonls = {
+    json = {
+      format = { enable = false },
+      schemas = require("schemastore").json.schemas(),
+      validate = { enable = true },
+    },
+  },
+  yamlls = {
+    schemaStore = {
+      -- You must disable built-in schemaStore support if you want to use
+      -- this plugin and its advanced options like `ignore`.
+      enable = false,
+      -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+      url = "",
+    },
+    schemas = require("schemastore").yaml.schemas(),
+  },
+  taplo = {},
+  lemminx = {},
+
+  html = { filetypes = { "html", "twig", "hbs" } },
+  cssls = {},
 }
 
 -- Setup neovim lua configuration
