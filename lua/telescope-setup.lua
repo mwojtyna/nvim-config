@@ -31,8 +31,24 @@ local function telescope_live_grep_open_files()
 end
 vim.keymap.set("n", "<leader>fl", telescope_live_grep_open_files, { desc = "[F]ind in Open Files" })
 vim.keymap.set("n", "<leader>fs", require("telescope.builtin").find_files, { desc = "[F]ile [s]earch" })
+vim.keymap.set(
+  "n",
+  "<leader>fS",
+  function() require("telescope.builtin").find_files({ hidden = true }) end,
+  { desc = "[F]ile [s]earch (with hidden files)" }
+)
 vim.keymap.set("n", "<leader>fo", require("telescope.builtin").oldfiles, { desc = "[F]ind recently [o]pened files" })
 vim.keymap.set("n", "<leader>fw", require("telescope.builtin").live_grep, { desc = "[F]ind by [w]ord" })
+vim.keymap.set(
+  "n",
+  "<leader>fW",
+  function()
+    require("telescope.builtin").live_grep({
+      additional_args = { "--hidden" },
+    })
+  end,
+  { desc = "[F]ind by [w]ord (with hidden files)" }
+)
 vim.keymap.set("n", "<leader>f<Enter>", require("telescope.builtin").resume, { desc = "[F]ind resume" })
 vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags, { desc = "[F]ind [h]elp" })
 vim.keymap.set("n", "<leader>fn", require("telescope").extensions.notify.notify, { desc = "[F]ind [n]otifications" })

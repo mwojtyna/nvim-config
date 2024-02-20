@@ -65,7 +65,7 @@ vim.keymap.set("n", "<leader>c", "<C-w><C-h>:q!<CR>", { desc = "[C]lose diff" })
 vim.keymap.set("n", "]t", "gt", { desc = "Next tab" })
 vim.keymap.set("n", "[t", "gT", { desc = "Previous tab" })
 vim.keymap.set("t", "<M-q>", "<C-\\><C-n>")
-vim.keymap.set("n", "<leader>bc", ":bd<CR>", { desc = "Buffer [c]lose" })
+vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Buffer [d]elete" })
 vim.keymap.set("n", "<C-a>", "ggVG")
 
 -- Don't overwrite register when pasting over a word

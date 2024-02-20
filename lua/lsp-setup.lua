@@ -63,6 +63,10 @@ require("mason-null-ls").setup({
   handlers = {},
   ensure_installed = {
     "stylua",
+    -- NOTE: prettierd does read the config when changed (need to pkill prettierd),
+    -- also spawns a new process for each nested config file and reads the nested config correctly
+    -- editorconfig tabwidth only changes how wide vim shows the tabs, doesn't actually change their width
+    "prettierd",
   },
 })
 

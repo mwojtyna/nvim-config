@@ -46,6 +46,7 @@ vim.o.cmdheight = 0
 
 -- Open new panes below
 vim.o.splitbelow = true
+vim.o.splitright = true
 
 -- Sane defaults for folds
 vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
