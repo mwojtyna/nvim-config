@@ -65,6 +65,7 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.diagnostics.hadolint,
   },
 })
 ---@diagnostic disable-next-line: missing-fields
@@ -83,6 +84,13 @@ local servers = {
       -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
+  html = { filetypes = { "html", "twig", "hbs" } },
+  cssls = {},
+  tsserver = {},
+  eslint = {},
+  tailwindcss = {},
+  astro = {},
+  prismals = {},
 
   jsonls = {
     json = {
@@ -102,12 +110,7 @@ local servers = {
   },
   taplo = {},
   lemminx = {},
-
-  html = { filetypes = { "html", "twig", "hbs" } },
-  cssls = {},
-  tsserver = {},
-  eslint = {},
-  tailwindcss = {},
+  dockerls = {},
 }
 
 -- Setup neovim lua configuration
@@ -116,6 +119,9 @@ require("neodev").setup()
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+-- Tell the server the capability of foldingRange,
+-- Neovim hasn't added foldingRange to default capabilities, users must add it manually
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true,
