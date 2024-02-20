@@ -75,6 +75,7 @@ require("lazy").setup({
         end)(),
       },
       "saadparwaiz1/cmp_luasnip",
+      "onsails/lspkind.nvim",
 
       -- Adds LSP completion capabilities
       "hrsh7th/cmp-nvim-lsp",
