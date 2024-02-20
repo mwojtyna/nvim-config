@@ -394,7 +394,7 @@ require("lazy").setup({
 
   {
     "3rd/image.nvim",
-    event = "BufRead",
+    ft = { "image_nvim" },
     opts = {
       tmux_show_only_in_active_window = true,
     },
@@ -510,8 +510,18 @@ require("lazy").setup({
     "rcarriga/nvim-notify",
     lazy = false,
     config = function()
-      require("notify").setup()
-      vim.notify = require("notify")
+      local notify = require("notify")
+      notify.setup()
+      local banned_messages = { "No information available" }
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.notify = function(msg, ...)
+        for _, banned in ipairs(banned_messages) do
+          if msg == banned then
+            return
+          end
+        end
+        return notify(msg, ...)
+      end
     end,
   },
 
@@ -585,6 +595,23 @@ require("lazy").setup({
   {
     "wakatime/vim-wakatime",
     event = "BufRead",
+  },
+
+  {
+    "NvChad/nvim-colorizer.lua",
+    event = "BufRead",
+    cmds = { "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers", "ColorizerToggle" },
+    opts = {
+      user_default_options = {
+        RRGGBBAA = true, -- #RRGGBBAA hex codes
+        AARRGGBB = true, -- 0xAARRGGBB hex codes
+        css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        tailwind = true, -- Enable tailwind colors
+        -- update color values even if buffer is not focused
+        -- example use: cmp_menu, cmp_docs
+        always_update = true,
+      },
+    },
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart

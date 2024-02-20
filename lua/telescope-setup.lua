@@ -23,13 +23,17 @@ pcall(require("telescope").load_extension, "fzf")
 -- See `:help telescope.builtin`
 vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
 
-local function telescope_live_grep_open_files()
-  require("telescope.builtin").live_grep({
-    grep_open_files = true,
-    prompt_title = "Live Grep in Open Files",
-  })
-end
-vim.keymap.set("n", "<leader>fl", telescope_live_grep_open_files, { desc = "[F]ind in Open Files" })
+vim.keymap.set(
+  "n",
+  "<leader>fl",
+  function()
+    require("telescope.builtin").live_grep({
+      grep_open_files = true,
+      prompt_title = "Live Grep in Open Files",
+    })
+  end,
+  { desc = "[F]ind in open files" }
+)
 vim.keymap.set("n", "<leader>fs", require("telescope.builtin").find_files, { desc = "[F]ile [s]earch" })
 vim.keymap.set(
   "n",

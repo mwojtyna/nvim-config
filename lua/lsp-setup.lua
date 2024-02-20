@@ -16,7 +16,11 @@ local on_attach = function(_, bufnr)
   end
 
   nmap("<leader>r", vim.lsp.buf.rename, "[R]ename")
-  nmap("<leader>a", function() vim.lsp.buf.code_action({ context = { only = { "quickfix", "refactor", "source" } } }) end, "Code [a]ction")
+  nmap(
+    "<leader>a",
+    function() vim.lsp.buf.code_action({ context = { only = { "quickfix", "refactor", "source" } } }) end,
+    "Code [a]ction"
+  )
   nmap("<leader>lf", function()
     vim.lsp.buf.format({
       bufnr = bufnr,
@@ -102,6 +106,7 @@ local servers = {
   html = { filetypes = { "html", "twig", "hbs" } },
   cssls = {},
   tsserver = {},
+  tailwindcss = {},
 }
 
 -- Setup neovim lua configuration
