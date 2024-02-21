@@ -30,16 +30,16 @@ local on_attach = function(_, bufnr)
   end, "[F]ormat")
 
   nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [d]efinition")
+  nmap("gD", vim.lsp.buf.declaration, "[G]oto [d]eclaration") -- In C, go to header file
   nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [r]eferences")
   nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [i]mplementation")
-  nmap("gD", require("telescope.builtin").lsp_type_definitions, "Type [d]efinition")
+  nmap("gt", require("telescope.builtin").lsp_type_definitions, "[G]oto [t]ype definition")
 
   -- See `:help K` for why this keymap
   nmap("K", vim.lsp.buf.hover, "Hover Documentation")
   nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
   -- Lesser used LSP functionality
-  nmap("gD", vim.lsp.buf.declaration, "[G]oto [d]eclaration")
   nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [a]dd Folder")
   nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [r]emove Folder")
   nmap("<leader>wl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "[W]orkspace [l]ist folders")
