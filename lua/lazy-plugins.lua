@@ -615,6 +615,35 @@ require("lazy").setup({
     },
   },
 
+  -- Yank history
+  {
+    "gbprod/yanky.nvim",
+    keys = {
+      { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put yanked text after cursor" },
+      {
+        "P",
+        "<Plug>(YankyPutBefore)",
+        mode = { "n", "x" },
+        desc = "Put yanked text before cursor",
+      },
+      {
+        "gp",
+        "<Plug>(YankyGPutAfter)",
+        mode = { "n", "x" },
+        desc = "Put yanked text after selection",
+      },
+      {
+        "gP",
+        "<Plug>(YankyGPutBefore)",
+        mode = { "n", "x" },
+        desc = "Put yanked text before selection",
+      },
+      { "[y", "<Plug>(YankyCycleForward)", desc = "Cycle forward through yank history" },
+      { "]y", "<Plug>(YankyCycleBackward)", desc = "Cycle backward through yank history" },
+    },
+    opts = {},
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
