@@ -627,7 +627,7 @@ require("lazy").setup({
   {
     "NvChad/nvim-colorizer.lua",
     event = "BufRead",
-    cmds = { "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers", "ColorizerToggle" },
+    cmd = { "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers", "ColorizerToggle" },
     opts = {
       user_default_options = {
         RRGGBBAA = true, -- #RRGGBBAA hex codes
