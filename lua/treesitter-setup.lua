@@ -25,6 +25,7 @@ vim.defer_fn(function()
       "gitattributes",
       "gitcommit",
       "gitignore",
+      "regex",
     },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)

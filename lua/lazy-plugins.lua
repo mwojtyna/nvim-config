@@ -276,6 +276,52 @@ require("lazy").setup({
   },
 
   {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      cmdline = { enabled = false },
+      messages = { enabled = false },
+      popupmenu = { enabled = false },
+      redirect = { enabled = false },
+      lsp = {
+        progress = { enabled = false },
+        hover = { silent = true },
+        signature = { enabled = false },
+        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+        },
+      },
+      -- you can enable a preset for easier configuration
+      presets = {
+        lsp_doc_border = true, -- add a border to hover docs and signature help
+      },
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      {
+        "rcarriga/nvim-notify",
+        config = function()
+          local notify = require("notify")
+          notify.setup()
+          local banned_messages = { "No information available" }
+          ---@diagnostic disable-next-line: duplicate-set-field
+          vim.notify = function(msg, ...)
+            for _, banned in ipairs(banned_messages) do
+              if msg == banned then
+                return
+              end
+            end
+            return notify(msg, ...)
+          end
+        end,
+      },
+    },
+  },
+
+  {
     "akinsho/toggleterm.nvim",
     version = "*",
     -- event = "VeryLazy",
@@ -450,7 +496,6 @@ require("lazy").setup({
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
       "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     lazy = false,
@@ -504,25 +549,6 @@ require("lazy").setup({
           { event = require("neo-tree.events").FILE_RENAMED, handler = require("utils").on_file_remove },
         },
       })
-    end,
-  },
-
-  {
-    "rcarriga/nvim-notify",
-    lazy = false,
-    config = function()
-      local notify = require("notify")
-      notify.setup()
-      local banned_messages = { "No information available" }
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.notify = function(msg, ...)
-        for _, banned in ipairs(banned_messages) do
-          if msg == banned then
-            return
-          end
-        end
-        return notify(msg, ...)
-      end
     end,
   },
 
