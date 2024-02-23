@@ -10,11 +10,7 @@ require("telescope").setup({
         ["<C-p>"] = require("telescope.actions.layout").toggle_preview,
       },
     },
-    layout_config = {
-      prompt_position = "top",
-    },
-    sorting_strategy = "ascending",
-    wrap_results = true,
+    wrap_results = false,
   },
 })
 
