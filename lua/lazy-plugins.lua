@@ -672,6 +672,7 @@ require("lazy").setup({
 
   {
     "psliwka/vim-dirtytalk",
+    event = "BufRead",
     build = ":DirtytalkUpdate",
     config = function()
       vim.opt.spell = true
