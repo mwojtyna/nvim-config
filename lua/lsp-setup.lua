@@ -24,7 +24,7 @@ local on_attach = function(_, bufnr)
   nmap("<leader>lf", function()
     vim.lsp.buf.format({
       bufnr = bufnr,
-      -- Use the filter function to explictly notify when no clients matched
+      -- Use the filter function to explicitly notify when no clients matched
       filter = function(client) return not vim.tbl_contains(require("utils").disable_format, client.name) end,
     })
   end, "[F]ormat")
