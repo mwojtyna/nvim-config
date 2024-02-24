@@ -570,6 +570,8 @@ require("lazy").setup({
       { "<leader>xq", function() require("trouble").toggle("quickfix") end, desc = "Toggle quickfix menu" },
       { "<leader>xl", function() require("trouble").toggle("loclist") end, desc = "Toggle location list menu" },
       { "<leader>xt", function() require("trouble").toggle("todo") end, desc = "Toggle todo list" },
+      { "<C-n>", function() require("trouble").next({ skip_groups = true, jump = true }) end },
+      { "<C-p>", function() require("trouble").previous({ skip_groups = true, jump = true }) end },
     },
     opts = {
       height = 20,
@@ -650,8 +652,6 @@ require("lazy").setup({
       { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put yanked text before cursor" },
       { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" }, desc = "Put yanked text after selection" },
       { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" }, desc = "Put yanked text before selection" },
-      { "<c-p>", "<Plug>(YankyPreviousEntry)", desc = "Select previous entry through yank history" },
-      { "<c-n>", "<Plug>(YankyNextEntry)", desc = "Select next entry through yank history" },
       { "]p", "<Plug>(YankyPutIndentAfterLinewise)", desc = "Put indented after cursor (linewise)" },
       { "[p", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "Put indented before cursor (linewise)" },
       { "]P", "<Plug>(YankyPutIndentAfterLinewise)", desc = "Put indented after cursor (linewise)" },
