@@ -28,7 +28,7 @@ vim.keymap.set(
 vim.keymap.set(
   "n",
   "]d",
-  function() vim.diagnostic.goto_prev({ float = { format = format_diagnostic_hover } }) end,
+  function() vim.diagnostic.goto_next({ float = { format = format_diagnostic_hover } }) end,
   { desc = "Go to next diagnostic message" }
 )
 vim.keymap.set(
