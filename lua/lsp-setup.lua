@@ -29,11 +29,11 @@ local on_attach = function(_, bufnr)
     })
   end, "[F]ormat")
 
-  nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [d]efinition")
+  nmap("gd", function() require("telescope.builtin").lsp_definitions({ show_line = false }) end, "[G]oto [d]efinition")
   nmap("gD", vim.lsp.buf.declaration, "[G]oto [d]eclaration") -- In C, go to header file
-  nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [r]eferences")
-  nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [i]mplementation")
-  nmap("gt", require("telescope.builtin").lsp_type_definitions, "[G]oto [t]ype definition")
+  nmap("gr", function() require("telescope.builtin").lsp_references({ show_line = false }) end, "[G]oto [r]eferences")
+  nmap("gI", function() require("telescope.builtin").lsp_implementations({ show_line = false }) end, "[G]oto [i]mplementation")
+  nmap("gt", function() require("telescope.builtin").lsp_type_definitions({ show_line = false }) end, "[G]oto [t]ype definition")
 
   -- See `:help K` for why this keymap
   nmap("K", vim.lsp.buf.hover, "Hover Documentation")
