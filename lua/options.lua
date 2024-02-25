@@ -58,4 +58,7 @@ vim.o.foldenable = true
 -- Max nvim-cmp menu height
 vim.o.ph = 25
 
+-- Visual block anywhere
+vim.o.virtualedit = "block"
+
 -- vim: ts=2 sts=2 sw=2 et
