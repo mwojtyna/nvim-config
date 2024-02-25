@@ -61,4 +61,9 @@ vim.o.ph = 25
 -- Visual block anywhere
 vim.o.virtualedit = "block"
 
+-- Spell checking
+vim.o.spell = true
+vim.opt.spelllang = { "en", "programming" }
+vim.o.spelloptions = "camel"
+
 -- vim: ts=2 sts=2 sw=2 et

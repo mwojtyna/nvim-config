@@ -681,17 +681,6 @@ require("lazy").setup({
     opts = {},
   },
 
-  {
-    "psliwka/vim-dirtytalk",
-    event = "BufRead",
-    build = ":DirtytalkUpdate",
-    config = function()
-      vim.opt.spell = true
-      vim.opt.spelllang = { "en", "programming" }
-      vim.opt.spelloptions = "camel"
-    end,
-  },
-
   -- NOTE: Next Step on Your JSON Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
