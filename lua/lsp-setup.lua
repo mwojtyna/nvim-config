@@ -21,6 +21,13 @@ local on_attach = function(_, bufnr)
     function() vim.lsp.buf.code_action({ context = { only = { "quickfix", "refactor", "source" } } }) end,
     "Code [a]ction"
   )
+  vim.keymap.set(
+    "v",
+    "<leader>a",
+    function() vim.lsp.buf.code_action({ context = { only = { "quickfix", "refactor", "source" } } }) end,
+    { buffer = bufnr, desc = "LSP: Code [a]ction" }
+  )
+
   nmap("<leader>lf", function()
     vim.lsp.buf.format({
       bufnr = bufnr,
