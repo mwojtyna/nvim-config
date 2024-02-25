@@ -452,9 +452,11 @@ require("lazy").setup({
 
   {
     "3rd/image.nvim",
-    ft = { "image_nvim" },
+    event = "BufRead *.{png,jpg,jpeg,gif,webp}",
+    ft = "markdown",
     opts = {
       tmux_show_only_in_active_window = true,
+      window_overlap_clear_enabled = true, -- toggles images when windows are overlapped
     },
   },
 
@@ -507,7 +509,7 @@ require("lazy").setup({
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     lazy = false,
     keys = {
