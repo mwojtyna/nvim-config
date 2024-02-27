@@ -186,17 +186,17 @@ require("lazy").setup({
       })
       local config = lualine.get_config()
       table.insert(config.sections.lualine_c, { "searchcount" })
-      table.insert(config.sections.lualine_c, {
-        "macrorecording",
-        fmt = function()
-          local recording_register = vim.fn.reg_recording()
-          if recording_register == "" then
-            return ""
-          else
-            return "Recording @" .. recording_register
-          end
-        end,
-      })
+      -- table.insert(config.sections.lualine_c, {
+      --   "macrorecording",
+      --   fmt = function()
+      --     local recording_register = vim.fn.reg_recording()
+      --     if recording_register == "" then
+      --       return ""
+      --     else
+      --       return "Recording @" .. recording_register
+      --     end
+      --   end,
+      -- })
 
       lualine.setup(config)
     end,

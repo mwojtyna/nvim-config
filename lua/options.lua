@@ -42,7 +42,7 @@ vim.o.relativenumber = true
 vim.o.cursorline = true
 
 -- Cover default status bar
-vim.o.cmdheight = 0
+-- vim.o.cmdheight = 0
 
 -- Open new panes below
 vim.o.splitbelow = true
@@ -60,10 +60,5 @@ vim.o.ph = 25
 
 -- Visual block anywhere
 vim.o.virtualedit = "block"
-
--- Spell checking
-vim.o.spell = true
-vim.opt.spelllang = { "en", "programming" }
-vim.o.spelloptions = "camel"
 
 -- vim: ts=2 sts=2 sw=2 et
