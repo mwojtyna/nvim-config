@@ -8,10 +8,7 @@ require("lazy").setup({
     keys = {
       {
         "<leader>gg",
-        function()
-          local cmd = "Git<CR>"
-          vim.api.nvim_input(require("utils").is_wide() and ":vertical " .. cmd or ":" .. cmd)
-        end,
+        function() vim.cmd(require("utils").is_wide() and ":vertical " .. "Git" or ":" .. "Git") end,
         desc = "Open Fugitive",
       },
       {
