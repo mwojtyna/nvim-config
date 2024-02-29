@@ -275,8 +275,7 @@ require("lazy").setup({
 
   {
     "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
+    event = "BufRead",
     opts = {},
   },
 
@@ -312,24 +311,27 @@ require("lazy").setup({
     },
     dependencies = {
       "MunifTanjim/nui.nvim",
-      {
-        "rcarriga/nvim-notify",
-        config = function()
-          local notify = require("notify")
-          notify.setup()
-          local banned_messages = { "No information available" }
-          ---@diagnostic disable-next-line: duplicate-set-field
-          vim.notify = function(msg, ...)
-            for _, banned in ipairs(banned_messages) do
-              if msg == banned then
-                return
-              end
-            end
-            return notify(msg, ...)
-          end
-        end,
-      },
     },
+  },
+
+  {
+    "rcarriga/nvim-notify",
+    lazy = false,
+    priority = 100,
+    config = function()
+      local notify = require("notify")
+      notify.setup()
+      local banned_messages = { "No information available" }
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.notify = function(msg, ...)
+        for _, banned in ipairs(banned_messages) do
+          if msg == banned then
+            return
+          end
+        end
+        return notify(msg, ...)
+      end
+    end,
   },
 
   {
@@ -510,60 +512,13 @@ require("lazy").setup({
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
-    lazy = false,
+    -- Setup neo-tree when pressed a key...
     keys = {
       { "<leader>o", ":Neotree toggle<CR>", desc = "Open neotree" },
     },
-    config = function()
-      require("neo-tree").setup({
-        default_component_configs = {
-          git_status = {
-            symbols = {
-              -- Change type
-              added = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
-              modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
-              deleted = "✖", -- this can only be used in the git_status source
-              renamed = "󰁕", -- this can only be used in the git_status source
-              -- Status type
-              untracked = "",
-              ignored = "",
-              unstaged = "󰄱",
-              staged = "",
-              conflict = "",
-            },
-          },
-        },
-        window = {
-          position = "left",
-          width = 50,
-          mappings = {
-            ["l"] = "open",
-            ["h"] = "close_node",
-          },
-        },
-        filesystem = {
-          filtered_items = {
-            visible = true, -- when true, they will just be displayed differently than normal items
-            hide_dotfiles = false,
-            hide_gitignored = true,
-            hide_hidden = true, -- only works on Windows for hidden files/directories
-            never_show = {
-              ".DS_Store",
-              "thumbs.db",
-            },
-          },
-          follow_current_file = {
-            enabled = true, -- This will find and focus the file in the active buffer every time
-          },
-        },
-        event_handlers = {
-          { event = require("neo-tree.events").FILE_MOVED, handler = require("utils").on_file_remove },
-          { event = require("neo-tree.events").FILE_RENAMED, handler = require("utils").on_file_remove },
-        },
-      })
-    end,
+    --- ...or when opened a directory (`nvim .`)
+    config = require("neo-tree-setup").setup,
   },
 
   {

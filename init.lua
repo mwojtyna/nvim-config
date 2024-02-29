@@ -22,13 +22,17 @@ require("keymaps")
 
 require("autocmds")
 
+-- [[ Configure Treesitter ]]
+-- (syntax parser for highlighting)
+require("treesitter-setup")
+
 -- [[ Configure Telescope ]]
 -- (fuzzy finder)
 require("telescope-setup")
 
--- [[ Configure Treesitter ]]
--- (syntax parser for highlighting)
-require("treesitter-setup")
+-- [[ Configure neo-tree ]]
+-- (file tree)
+require("neo-tree-setup")
 
 -- [[ Configure LSP ]]
 -- (Language Server Protocol)
