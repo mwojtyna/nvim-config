@@ -468,7 +468,7 @@ require("lazy").setup({
 
   {
     "ray-x/lsp_signature.nvim",
-    event = "LspAttach",
+    event = "BufRead",
     opts = {
       hint_enable = false,
     },
