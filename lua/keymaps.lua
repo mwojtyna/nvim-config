@@ -68,7 +68,7 @@ vim.api.nvim_create_user_command("Q", ":q", {})
 vim.keymap.set("n", "<Esc>", ":noh<CR>", { silent = true })
 vim.keymap.set("n", "<CR>", ":noh<CR><CR>", { silent = true })
 
--- Better go to line start/end
+-- Improved go to line start/end
 vim.keymap.set("n", "H", "_")
 vim.keymap.set("n", "L", "$")
 vim.keymap.set("v", "H", "_")
@@ -82,7 +82,7 @@ vim.keymap.set("n", "<leader>pm", require("mason.ui").open, { desc = "Open mason
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
--- Vim panes
+-- Window navigation
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
@@ -95,7 +95,6 @@ vim.keymap.set("n", "]t", vim.cmd.tabnext, { desc = "Next tab" })
 vim.keymap.set("n", "[t", vim.cmd.tabprevious, { desc = "Previous tab" })
 vim.keymap.set("t", "<M-q>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Buffer [d]elete" })
-vim.keymap.set("n", "<C-a>", "ggVG")
 vim.api.nvim_create_user_command("E", ":EslintFixAll", {})
 
 -- Don't overwrite register when pasting over a word
