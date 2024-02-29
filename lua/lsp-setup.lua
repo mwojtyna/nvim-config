@@ -178,4 +178,17 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
+-- Add server name to diagnostics
+vim.diagnostic.config({
+  float = {
+    --- @param opts { source: string, message: string }
+    format = function(opts)
+      if opts.source:sub(-1) == "." then
+        opts.source = opts.source:sub(1, -2)
+      end
+      return opts.source .. ": " .. opts.message
+    end,
+  },
+})
+
 -- vim: ts=2 sts=2 sw=2 et
