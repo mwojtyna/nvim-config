@@ -6,16 +6,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
 })
 
--- Set file type
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  pattern = "hyprland.conf",
-  callback = function() vim.cmd.setfiletype("hyprlang") end,
-})
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  pattern = "*.http",
-  callback = function() vim.cmd.setfiletype("http") end,
-})
-
 -- Disable spell checking in git log
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "git",

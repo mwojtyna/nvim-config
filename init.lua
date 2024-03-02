@@ -20,6 +20,7 @@ require("options")
 -- [[ Basic Keymaps ]]
 require("keymaps")
 
+require("filetypes")
 require("autocmds")
 
 -- [[ Configure Treesitter ]]

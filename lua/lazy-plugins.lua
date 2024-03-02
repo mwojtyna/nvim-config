@@ -152,6 +152,35 @@ require("lazy").setup({
   },
 
   {
+    "nvim-tree/nvim-web-devicons",
+    lazy = false,
+    config = function()
+      local dotenv = {
+        icon = "",
+        name = "Dotenv",
+        color = "#faf743",
+        cterm_color = "227",
+      }
+      require("nvim-web-devicons").setup({
+        override = {
+          astro = {
+            icon = "󱎯",
+            name = "Astro",
+            color = "#ec682c",
+          },
+        },
+        override_by_filename = {
+          [".env.test"] = dotenv,
+          [".env.local"] = dotenv,
+          [".env.development"] = dotenv,
+          [".env.dev"] = dotenv,
+          [".env.example"] = dotenv,
+        },
+      })
+    end,
+  },
+
+  {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
