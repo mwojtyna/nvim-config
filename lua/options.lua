@@ -41,9 +41,6 @@ vim.o.termguicolors = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
 
--- Cover default status bar
--- vim.o.cmdheight = 0
-
 -- Open new panes below
 vim.o.splitbelow = true
 vim.o.splitright = true

@@ -6,12 +6,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
 })
 
--- Disable spell checking in git log
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "git",
-  callback = function() vim.cmd.setlocal("nospell") end,
-})
-
 -- Replace the quickfix window with Trouble when viewing TSC results
 vim.api.nvim_create_autocmd("BufWinEnter", {
   pattern = "quickfix",
