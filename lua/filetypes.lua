@@ -8,8 +8,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   callback = function() vim.cmd.setfiletype("http") end,
 })
 
-vim.filetype.add({
-  pattern = {
-    ["%.env%.[%w_.-]+"] = "sh",
-  },
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = ".env.*",
+  callback = function() vim.bo.filetype = "sh" end,
 })

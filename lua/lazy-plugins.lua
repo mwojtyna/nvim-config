@@ -8,7 +8,13 @@ require("lazy").setup({
     keys = {
       {
         "<leader>gg",
-        function() vim.cmd(require("utils").is_wide() and ":vertical " .. "Git" or ":" .. "Git") end,
+        function()
+          local is_wide = require("utils").is_wide()
+          vim.cmd(is_wide and ":vertical " .. "Git" or ":" .. "Git")
+          if is_wide then
+            vim.cmd.wincmd("30<")
+          end
+        end,
         desc = "Open Fugitive",
       },
       {
