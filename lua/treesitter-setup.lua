@@ -20,6 +20,7 @@ vim.defer_fn(function()
       "bash",
       "markdown",
       "markdown_inline",
+      "mermaid",
       "git_config",
       "git_rebase",
       "gitattributes",

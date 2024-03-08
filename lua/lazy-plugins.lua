@@ -12,7 +12,7 @@ require("lazy").setup({
           local is_wide = require("utils").is_wide()
           vim.cmd(is_wide and ":vertical " .. "Git" or ":" .. "Git")
           if is_wide then
-            vim.cmd.wincmd("30<")
+            vim.cmd.wincmd("10<")
           end
         end,
         desc = "Open Fugitive",
