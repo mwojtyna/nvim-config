@@ -317,7 +317,7 @@ require("lazy").setup({
       lsp = {
         progress = { enabled = false },
         hover = { silent = true },
-        signature = { enabled = false },
+        signature = { enabled = true },
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -488,14 +488,6 @@ require("lazy").setup({
     "vladdoster/remember.nvim",
     event = "VeryLazy",
     opts = {},
-  },
-
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "BufRead",
-    opts = {
-      hint_enable = false,
-    },
   },
 
   {
