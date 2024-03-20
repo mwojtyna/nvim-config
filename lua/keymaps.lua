@@ -74,7 +74,4 @@ vim.keymap.set("t", "<M-q>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Buffer [d]elete" })
 vim.api.nvim_create_user_command("E", ":EslintFixAll", {})
 
--- Don't overwrite register when pasting over a word
-vim.keymap.set("x", "p", "pgvy", { noremap = true })
-
 -- vim: ts=2 sts=2 sw=2 et
