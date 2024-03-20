@@ -98,6 +98,7 @@ local servers = {
   tailwindcss = {},
   astro = {},
   prismals = {},
+  gopls = {},
 
   jsonls = {
     json = {
