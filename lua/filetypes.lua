@@ -17,3 +17,8 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "go.mod",
   callback = function() vim.bo.filetype = "gomod" end,
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.rasi",
+  callback = function() vim.bo.filetype = "rasi" end,
+})
