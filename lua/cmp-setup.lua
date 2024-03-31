@@ -2,7 +2,6 @@
 -- See `:help cmp`
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local copilot = require("copilot.suggestion")
 
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup({})
@@ -36,6 +35,8 @@ cmp.setup({
     ["<C-Space>"] = cmp.mapping.complete({}),
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
     ["<Tab>"] = cmp.mapping(function(fallback)
+      local copilot = require("copilot.suggestion")
+
       if copilot.is_visible() then
         copilot.accept()
       elseif luasnip.expand_or_locally_jumpable() then

@@ -203,7 +203,7 @@ require("lazy").setup({
     -- Set lualine as statusline
     "nvim-lualine/lualine.nvim",
     -- See `:help lualine.txt`
-    event = "VeryLazy",
+    lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       local lualine = require("lualine")
@@ -264,7 +264,7 @@ require("lazy").setup({
   {
     -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
+    event = "BufRead",
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter-context",
@@ -302,13 +302,13 @@ require("lazy").setup({
 
   {
     "stevearc/dressing.nvim",
-    event = "VeryLazy",
+    lazy = false,
     opts = {},
   },
 
   {
     "folke/noice.nvim",
-    event = "VeryLazy",
+    lazy = false,
     opts = {
       cmdline = { enabled = false },
       messages = { enabled = false },
