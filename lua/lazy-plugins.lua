@@ -486,7 +486,7 @@ require("lazy").setup({
 
   {
     "vladdoster/remember.nvim",
-    event = "VeryLazy",
+    lazy = false,
     opts = {},
   },
 
