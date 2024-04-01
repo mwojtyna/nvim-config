@@ -62,4 +62,8 @@ vim.o.virtualedit = "block"
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
+-- Enhance hunk diff
+-- https://github.com/neovim/neovim/pull/14537
+vim.o.diffopt = "internal,filler,closeoff,linematch:60"
+
 -- vim: ts=2 sts=2 sw=2 et
