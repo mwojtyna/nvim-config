@@ -44,7 +44,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-  nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+  nmap("<C-p>", vim.lsp.buf.signature_help, "Signature Documentation")
 
   -- Lesser used LSP functionality
   nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [a]dd Folder")
