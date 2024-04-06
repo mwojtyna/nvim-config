@@ -476,6 +476,7 @@ require("lazy").setup({
 
   {
     "3rd/image.nvim",
+    enabled = vim.fn.has("win32") ~= 1,
     event = "BufRead *.{png,jpg,jpeg,gif,webp}",
     ft = "markdown",
     opts = {
