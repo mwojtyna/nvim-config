@@ -28,7 +28,7 @@ local on_attach = function(_, bufnr)
     { buffer = bufnr, desc = "LSP: Code [a]ction" }
   )
 
-  nmap("<leader>lf", function()
+  nmap("<leader>f", function()
     vim.lsp.buf.format({
       bufnr = bufnr,
       -- Use the filter function to explicitly notify when no clients matched
@@ -44,12 +44,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-  nmap("<C-p>", vim.lsp.buf.signature_help, "Signature Documentation")
-
-  -- Lesser used LSP functionality
-  nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [a]dd Folder")
-  nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [r]emove Folder")
-  nmap("<leader>wl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "[W]orkspace [l]ist folders")
+  -- nmap("<C-p>", vim.lsp.buf.signature_help, "Signature Documentation")
 end
 
 -- mason-lspconfig requires that these setup functions are called in this order
