@@ -94,6 +94,13 @@ local servers = {
   astro = {},
   prismals = {},
   gopls = {},
+  rust_analyzer = {
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = "clippy",
+      },
+    },
+  },
 
   jsonls = {
     json = {

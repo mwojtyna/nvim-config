@@ -499,7 +499,7 @@ require("lazy").setup({
       {
         "<leader>m",
         function()
-          require("harpoon"):list():append()
+          require("harpoon"):list():add()
           vim.notify("Added to harpoon", vim.log.levels.INFO)
         end,
         desc = "[M]ark for harpoon list",
@@ -648,6 +648,12 @@ require("lazy").setup({
       { "[y", "<Plug>(YankyCycleForward)", desc = "Cycle forward through yank history" },
       { "]y", "<Plug>(YankyCycleBackward)", desc = "Cycle backward through yank history" },
     },
+    opts = {},
+  },
+
+  {
+    "saecki/crates.nvim",
+    tag = "stable",
     opts = {},
   },
 
