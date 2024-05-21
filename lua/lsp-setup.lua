@@ -42,8 +42,6 @@ local on_attach = function(_, bufnr)
   nmap("gI", function() require("telescope.builtin").lsp_implementations({ show_line = false }) end, "[G]oto [i]mplementation")
   nmap("gt", function() require("telescope.builtin").lsp_type_definitions({ show_line = false }) end, "[G]oto [t]ype definition")
 
-  -- See `:help K` for why this keymap
-  nmap("K", vim.lsp.buf.hover, "Hover Documentation")
   -- nmap("<C-p>", vim.lsp.buf.signature_help, "Signature Documentation")
 end
 
