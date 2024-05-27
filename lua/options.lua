@@ -35,6 +35,7 @@ vim.o.timeoutlen = 300
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
+-- Fix color warnings
 vim.o.termguicolors = true
 
 -- Relative line numbers, highlight current
@@ -65,5 +66,7 @@ vim.o.shiftwidth = 4
 -- Enhance hunk diff
 -- https://github.com/neovim/neovim/pull/14537
 vim.o.diffopt = "internal,filler,closeoff,linematch:60"
+
+vim.o.scrolloff = 10
 
 -- vim: ts=2 sts=2 sw=2 et
