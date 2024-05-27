@@ -28,7 +28,7 @@ local on_attach = function(_, bufnr)
     { buffer = bufnr, desc = "LSP: Code [a]ction" }
   )
 
-  nmap("<leader>f", function()
+  nmap("<leader>ff", function()
     vim.lsp.buf.format({
       bufnr = bufnr,
       -- Use the filter function to explicitly notify when no clients matched
