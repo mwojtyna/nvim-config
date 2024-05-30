@@ -539,28 +539,50 @@ require("lazy").setup({
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader>xx", function() require("trouble").toggle() end, desc = "Toggle menu" },
       {
         "<leader>xw",
-        function() require("trouble").toggle("workspace_diagnostics") end,
+        function() require("trouble").toggle("diagnostics") end,
         desc = "Toggle workspace diagnostics menu",
       },
       {
         "<leader>xd",
-        function() require("trouble").toggle("document_diagnostics") end,
+        function() require("trouble").toggle({ mode = "diagnostics", filter = { buf = 0 } }) end,
         desc = "Toggle document diagnostics menu",
       },
-      { "<leader>xq", function() require("trouble").toggle("quickfix") end, desc = "Toggle quickfix menu" },
+      { "<leader>xq", function() require("trouble").toggle("qflist") end, desc = "Toggle quickfix menu" },
       { "<leader>xl", function() require("trouble").toggle("loclist") end, desc = "Toggle location list menu" },
       { "<leader>xt", function() require("trouble").toggle("todo") end, desc = "Toggle todo list" },
-      { "<C-n>", function() require("trouble").next({ skip_groups = true, jump = true }) end },
-      { "<C-p>", function() require("trouble").previous({ skip_groups = true, jump = true }) end },
+      {
+        "<C-n>",
+        function()
+          local trouble = require("trouble")
+          if trouble.is_open() then
+            --- @diagnostic disable-next-line: missing-parameter, missing-fields
+            trouble.next({ skip_groups = true, jump = true })
+          end
+        end,
+      },
+      --- @diagnostic disable-next-line: missing-parameter, missing-fields
+      {
+        "<C-p>",
+        function()
+          local trouble = require("trouble")
+          if trouble.is_open() then
+            --- @diagnostic disable-next-line: missing-parameter, missing-fields
+            trouble.prev({ skip_groups = true, jump = true })
+          end
+        end,
+      },
     },
-    opts = {
-      height = 20,
-      width = 87,
-      position = "bottom",
-    },
+    config = function()
+      require("trouble").setup({
+        win = {
+          size = {
+            height = 20,
+          },
+        },
+      })
+    end,
   },
 
   {

@@ -18,12 +18,14 @@ local on_attach = function(_, bufnr)
   nmap("<leader>r", vim.lsp.buf.rename, "[R]ename")
   nmap(
     "<leader>a",
+    ---@diagnostic disable-next-line: missing-fields
     function() vim.lsp.buf.code_action({ context = { only = { "quickfix", "refactor", "source" } } }) end,
     "Code [a]ction"
   )
   vim.keymap.set(
     "v",
     "<leader>a",
+    ---@diagnostic disable-next-line: missing-fields
     function() vim.lsp.buf.code_action({ context = { only = { "quickfix", "refactor", "source" } } }) end,
     { buffer = bufnr, desc = "LSP: Code [a]ction" }
   )
