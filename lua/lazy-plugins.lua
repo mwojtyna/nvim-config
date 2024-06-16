@@ -552,27 +552,27 @@ require("lazy").setup({
       { "<leader>xq", function() require("trouble").toggle("qflist") end, desc = "Toggle quickfix menu" },
       { "<leader>xl", function() require("trouble").toggle("loclist") end, desc = "Toggle location list menu" },
       { "<leader>xt", function() require("trouble").toggle("todo") end, desc = "Toggle todo list" },
-      {
-        "<C-n>",
-        function()
-          local trouble = require("trouble")
-          if trouble.is_open() then
-            --- @diagnostic disable-next-line: missing-parameter, missing-fields
-            trouble.next({ skip_groups = true, jump = true })
-          end
-        end,
-      },
-      --- @diagnostic disable-next-line: missing-parameter, missing-fields
-      {
-        "<C-p>",
-        function()
-          local trouble = require("trouble")
-          if trouble.is_open() then
-            --- @diagnostic disable-next-line: missing-parameter, missing-fields
-            trouble.prev({ skip_groups = true, jump = true })
-          end
-        end,
-      },
+      -- {
+      --   "<C-n>",
+      --   function()
+      --     local trouble = require("trouble")
+      --     if trouble.is_open() then
+      --       --- @diagnostic disable-next-line: missing-parameter, missing-fields
+      --       trouble.next({ skip_groups = true, jump = true })
+      --     end
+      --   end,
+      -- },
+      -- --- @diagnostic disable-next-line: missing-parameter, missing-fields
+      -- {
+      --   "<C-p>",
+      --   function()
+      --     local trouble = require("trouble")
+      --     if trouble.is_open() then
+      --       --- @diagnostic disable-next-line: missing-parameter, missing-fields
+      --       trouble.prev({ skip_groups = true, jump = true })
+      --     end
+      --   end,
+      -- },
     },
     config = function()
       require("trouble").setup({
@@ -677,6 +677,18 @@ require("lazy").setup({
     "saecki/crates.nvim",
     tag = "stable",
     opts = {},
+  },
+
+  {
+    "mg979/vim-visual-multi",
+    keys = {
+      "<c-n>",
+      "<c-up>",
+      "<c-down>",
+      "<s-left>",
+      "<s-right>",
+    },
+    config = function() vim.g.VM_Mono_hl = "Visual" end,
   },
 
   -- NOTE: Next Step on Your JSON Neovim Journey: Add/Configure additional "plugins" for kickstart
