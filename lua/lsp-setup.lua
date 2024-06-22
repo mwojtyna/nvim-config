@@ -47,6 +47,8 @@ local on_attach = function(_, bufnr)
   -- nmap("<C-p>", vim.lsp.buf.signature_help, "Signature Documentation")
 end
 
+vim.api.nvim_create_user_command("E", ":EslintFixAll", {})
+
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
 require("mason").setup()

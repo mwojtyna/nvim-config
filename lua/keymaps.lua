@@ -59,8 +59,7 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
 
--- For convience
-vim.keymap.set("n", "<C-s>", ":w<CR>", { silent = true })
+-- Git
 vim.keymap.set("n", "<leader>c", "<C-w><C-h>:q!<CR>", { desc = "[C]lose diff (cursor on the right window)" })
 vim.keymap.set(
   "n",
@@ -68,10 +67,19 @@ vim.keymap.set(
   "<C-w><C-h>:q!<CR><C-w><C-l><C-w><C-l>:q!<CR>",
   { desc = "[C]lose merge diff (cursor in the middle window)" }
 )
+
+-- For convience
+vim.keymap.set("n", "<C-s>", ":w<CR>", { silent = true })
+vim.keymap.set("t", "<M-q>", "<C-\\><C-n>")
 vim.keymap.set("n", "]t", vim.cmd.tabnext, { desc = "Next tab" })
 vim.keymap.set("n", "[t", vim.cmd.tabprevious, { desc = "Previous tab" })
-vim.keymap.set("t", "<M-q>", "<C-\\><C-n>")
-vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Buffer [d]elete" })
-vim.api.nvim_create_user_command("E", ":EslintFixAll", {})
+vim.keymap.set("n", "<leader>n", function()
+  if require("utils").is_wide() then
+    vim.cmd.vsplit()
+    vim.cmd.edit("vertical")
+  else
+    vim.cmd.new()
+  end
+end, { desc = "New file" })
 
 -- vim: ts=2 sts=2 sw=2 et
