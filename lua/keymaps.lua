@@ -59,15 +59,6 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
 
--- Git
-vim.keymap.set("n", "<leader>c", "<C-w><C-h>:q!<CR>", { desc = "[C]lose diff (cursor on the right window)" })
-vim.keymap.set(
-  "n",
-  "<leader>C",
-  "<C-w><C-h>:q!<CR><C-w><C-l><C-w><C-l>:q!<CR>",
-  { desc = "[C]lose merge diff (cursor in the middle window)" }
-)
-
 -- For convience
 vim.keymap.set("n", "<C-s>", ":w<CR>", { silent = true })
 vim.keymap.set("t", "<M-q>", "<C-\\><C-n>")

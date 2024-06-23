@@ -18,14 +18,55 @@ require("lazy").setup({
         desc = "Open Fugitive",
       },
       {
-        "<leader>gd",
-        ":Gvdiffsplit!<CR>",
-        desc = "[D]iff view",
-      },
-      {
         "<leader>gl",
         ":Git log<CR>",
         desc = "Git [l]og",
+      },
+      {
+        "<leader>gb",
+        ":Git blame<CR>:wincmd 2><CR>",
+        desc = "Git [b]lame",
+      },
+    },
+  },
+  {
+    "sindrets/diffview.nvim",
+    opts = {
+      file_panel = {
+        tree_options = {
+          flatten_dirs = true,
+        },
+      },
+      hooks = {
+        diff_buf_read = function()
+          vim.opt_local.wrap = false
+          vim.opt_local.list = false
+        end,
+      },
+    },
+    keys = {
+      {
+        "<leader>gd",
+        function()
+          if next(require("diffview.lib").views) == nil then
+            vim.cmd("DiffviewOpen")
+            require("diffview.actions").toggle_files()
+          else
+            vim.cmd("tabc")
+          end
+        end,
+        desc = "Toggle [d]iff view",
+      },
+      {
+        "<leader>gf",
+        function()
+          if next(require("diffview.lib").views) == nil then
+            vim.cmd("DiffviewFileHistory %")
+          else
+            vim.cmd("tabc")
+          end
+        end,
+        "Current [f]ile history",
       },
     },
   },
@@ -112,17 +153,17 @@ require("lazy").setup({
         end
 
         -- Navigation
-        map({ "n", "v" }, "]g", function()
+        map({ "n", "v" }, "]c", function()
           if vim.wo.diff then
-            return "]g"
+            return "]c"
           end
           vim.schedule(function() gs.next_hunk() end)
           return "<Ignore>"
         end, { expr = true, desc = "Jump to next hunk" })
 
-        map({ "n", "v" }, "[g", function()
+        map({ "n", "v" }, "[c", function()
           if vim.wo.diff then
-            return "[g"
+            return "[c"
           end
           vim.schedule(function() gs.prev_hunk() end)
           return "<Ignore>"
@@ -136,19 +177,11 @@ require("lazy").setup({
         map("n", "<leader>gh", gs.reset_hunk, { desc = "Reset hunk" })
         map("n", "<leader>gr", gs.reset_buffer, { desc = "Reset buffer" })
         map("n", "<leader>gs", gs.stage_hunk, { desc = "Stage hunk" })
-        -- map('n', '<leader>hr', gs.reset_hunk, { desc = 'git reset hunk' })
-        -- map('n', '<leader>hS', gs.stage_buffer, { desc = 'git Stage buffer' })
-        -- map('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
-        -- map('n', '<leader>hR', gs.reset_buffer, { desc = 'git Reset buffer' })
         map("n", "<leader>gp", gs.preview_hunk, { desc = "Preview hunk" })
-        map("n", "<leader>gb", function() gs.blame_line({ full = false }) end, { desc = "Blame line" })
-        -- map('n', '<leader>gd', gs.diffthis, { desc = 'Git diff' })
-        -- map('n', '<leader>gD', function()
-        --   gs.diffthis '~'
-        -- end, { desc = 'Git diff against last commit' })
+        -- map("n", "<leader>gb", function() gs.blame_line({ full = false }) end, { desc = "Blame line" })
 
         -- Toggles
-        -- map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
+        map("n", "<leader>gB", gs.toggle_current_line_blame, { desc = "toggle git blame line" })
         -- map('n', '<leader>td', gs.toggle_deleted, { desc = 'Toggle git show deleted' })
 
         -- Text object
