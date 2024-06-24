@@ -128,8 +128,6 @@ require("lazy").setup({
     },
   },
 
-  -- Useful plugin to show you pending keybinds.
-  { "folke/which-key.nvim", opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
@@ -709,6 +707,7 @@ require("lazy").setup({
   {
     "saecki/crates.nvim",
     tag = "stable",
+    event = "BufRead Cargo.toml",
     opts = {},
   },
 

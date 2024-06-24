@@ -14,23 +14,6 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnos
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
--- document existing key chains
-require("which-key").register({
-  ["<leader>b"] = { name = "[B]uffer", _ = "which_key_ignore" },
-  ["<leader>f"] = { name = "[F]ind", _ = "which_key_ignore" },
-  ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
-  ["<leader>l"] = { name = "[L]SP", _ = "which_key_ignore" },
-  ["<leader>p"] = { name = "[P]ackages", _ = "which_key_ignore" },
-  ["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
-  ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-})
--- register which-key VISUAL mode
--- required for visual <leader>hs (hunk stage) to work
-require("which-key").register({
-  ["<leader>"] = { name = "VISUAL <leader>" },
-  ["<leader>g"] = { "[G]it hunk" },
-}, { mode = "v" })
-
 -- I can't type properly
 vim.api.nvim_create_user_command("W", ":w", {})
 vim.api.nvim_create_user_command("Q", ":q", {})
