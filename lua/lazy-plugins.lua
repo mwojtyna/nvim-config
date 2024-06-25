@@ -645,7 +645,6 @@ require("lazy").setup({
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    event = "BufRead",
     opts = {
       suggestion = { auto_trigger = true },
     },
