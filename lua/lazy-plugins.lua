@@ -303,7 +303,7 @@ require("lazy").setup({
         cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
         config = function()
           require("treesitter-context").setup({})
-          vim.api.nvim_set_hl(0, "TreesitterContext", { bg = require("tokyonight.colors").moon().bg })
+          vim.api.nvim_set_hl(0, "TreesitterContext", { bg = require("tokyonight.colors.moon").bg })
         end,
       },
       { "nvim-treesitter/nvim-treesitter-textobjects", event = "BufRead" },
@@ -467,7 +467,7 @@ require("lazy").setup({
       { "[[", function() require("illuminate").goto_prev_reference() end, desc = "Previous reference" },
     },
     config = function()
-      local opts = { bg = require("tokyonight.colors").moon().bg_highlight }
+      local opts = { bg = require("tokyonight.colors.moon").bg_highlight }
       vim.api.nvim_set_hl(0, "IlluminatedWordRead", opts)
       vim.api.nvim_set_hl(0, "IlluminatedWordWrite", opts)
       vim.api.nvim_set_hl(0, "IlluminatedWordText", {})
