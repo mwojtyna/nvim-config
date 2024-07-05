@@ -560,7 +560,17 @@ require("lazy").setup({
     },
     -- Setup neo-tree when pressed a key...
     keys = {
-      { "<leader>o", ":Neotree toggle<CR>", desc = "Open neotree" },
+      {
+        "<leader>o",
+        function()
+          require("neo-tree.command").execute({
+            source = "filesystem",
+            position = "left",
+            toggle = true,
+          })
+        end,
+        desc = "Open neotree",
+      },
     },
     --- ...or when opened a directory (`nvim .`)
     config = require("neo-tree-setup").setup,
