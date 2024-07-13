@@ -65,13 +65,11 @@ return {
             end
 
             -- Don't use the filter method for disabling formatting,
-            -- because on every save with an unsupported lsp a notification would be send
-            if not vim.tbl_contains(require("utils").disable_format, client.name) then
-              vim.lsp.buf.format({
-                async = false,
-                filter = function(c) return c.id == client.id end,
-              })
-            end
+            -- because on every save with an unsupported lsp a notification would be sent
+            vim.lsp.buf.format({
+              async = false,
+              filter = function(c) return not vim.tbl_contains(require("utils").disable_format, c.name) end,
+            })
           end,
         })
       end,
