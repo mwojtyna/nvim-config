@@ -1,24 +1,13 @@
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  pattern = "hyprland.conf",
-  callback = function() vim.cmd.setfiletype("hyprlang") end,
-})
+local function set_filetype(pattern, filetype)
+  vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = pattern,
+    callback = function() vim.bo.filetype = filetype end,
+  })
+end
 
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  pattern = "*.http",
-  callback = function() vim.cmd.setfiletype("http") end,
-})
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = ".env.*",
-  callback = function() vim.bo.filetype = "sh" end,
-})
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "go.mod",
-  callback = function() vim.bo.filetype = "gomod" end,
-})
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.rasi",
-  callback = function() vim.bo.filetype = "rasi" end,
-})
+set_filetype("hyprland.conf", "hyprlang")
+set_filetype("*.http", "http")
+set_filetype(".env.*", "sh")
+set_filetype("go.mod", "gomod")
+set_filetype("*.rasi", "rasi")
+set_filetype({ "docker-compose.yml", "docker-compose.yaml" }, "yaml.docker-compose")
