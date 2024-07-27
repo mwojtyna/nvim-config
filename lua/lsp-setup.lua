@@ -68,6 +68,7 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.clang_format,
     null_ls.builtins.diagnostics.hadolint,
   },
 })
@@ -102,6 +103,8 @@ local servers = {
       },
     },
   },
+  clangd = {},
+  neocmake = {},
 
   jsonls = {
     json = {
@@ -122,6 +125,13 @@ local servers = {
   taplo = {},
   lemminx = {},
   dockerls = {},
+}
+
+local cmd = {
+  clangd = {
+    "clangd",
+    "--offset-encoding=utf-16",
+  },
 }
 
 -- Setup neovim lua configuration
@@ -152,6 +162,7 @@ mason_lspconfig.setup_handlers({
       on_attach = on_attach,
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
+      cmd = cmd[server_name],
     })
   end,
 })
