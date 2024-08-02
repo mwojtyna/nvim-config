@@ -105,6 +105,7 @@ local servers = {
   },
   clangd = {},
   neocmake = {},
+  glsl_analyzer = {},
 
   jsonls = {
     json = {
