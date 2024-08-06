@@ -655,9 +655,12 @@ require("lazy").setup({
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    opts = {
-      suggestion = { auto_trigger = true },
-    },
+    config = function()
+      require("copilot").setup({
+        suggestion = { auto_trigger = true },
+      })
+      require("copilot.command").disable()
+    end,
   },
 
   {
