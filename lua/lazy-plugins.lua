@@ -735,6 +735,18 @@ require("lazy").setup({
     config = function() vim.g.VM_Mono_hl = "Visual" end,
   },
 
+  {
+    "p00f/clangd_extensions.nvim",
+    event = "BufRead *.{cpp,hpp,c,h}",
+    keys = {
+      {
+        "<leader>c",
+        function() require("clangd_extensions.switch_source_header").switch_source_header() end,
+        desc = "Switch implementation/header",
+      },
+    },
+  },
+
   -- NOTE: Next Step on Your JSON Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
