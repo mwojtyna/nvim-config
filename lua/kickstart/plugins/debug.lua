@@ -10,6 +10,7 @@
 
 return {
   "mfussenegger/nvim-dap",
+  event = "VeryLazy",
   keys = {
     { "<F5>", function() require("dap").continue() end, { desc = "Debug: Start/Continue" } },
     { "<F10>", function() require("dap").step_over() end, { desc = "Debug: Step Over" } },
