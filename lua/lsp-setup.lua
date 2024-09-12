@@ -90,7 +90,7 @@ local servers = {
   },
   html = { filetypes = { "html", "twig", "hbs" } },
   cssls = {},
-  tsserver = {},
+  ts_ls = {},
   eslint = {},
   tailwindcss = {},
   astro = {},
@@ -158,11 +158,6 @@ mason_lspconfig.setup({
 
 mason_lspconfig.setup_handlers({
   function(server_name)
-    if server_name == "tsserver" then
-      -- https://github.com/neovim/nvim-lspconfig/pull/3232#issuecomment-2331025714
-      server_name = "ts_ls"
-    end
-
     require("lspconfig")[server_name].setup({
       capabilities = capabilities,
       on_attach = on_attach,
