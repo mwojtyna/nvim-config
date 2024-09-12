@@ -196,8 +196,8 @@ require("lazy").setup({
         icon = "",
         name = "Dotenv",
         color = "#faf743",
-        cterm_color = "227",
       }
+
       require("nvim-web-devicons").setup({
         override = {
           astro = {
@@ -213,6 +213,13 @@ require("lazy").setup({
           [".env.dev"] = dotenv,
           [".env.example"] = dotenv,
         },
+        override_by_extension = {
+          ["tpp"] = {
+            icon = "",
+            name = "cpp",
+            color = "#5C99BA",
+          }
+        }
       })
     end,
   },
