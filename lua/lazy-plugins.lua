@@ -218,8 +218,8 @@ require("lazy").setup({
             icon = "",
             name = "cpp",
             color = "#5C99BA",
-          }
-        }
+          },
+        },
       })
     end,
   },
@@ -752,6 +752,18 @@ require("lazy").setup({
         desc = "Switch implementation/header",
       },
     },
+  },
+
+  {
+    "nvim-pack/nvim-spectre",
+    keys = {
+      {
+        "<leader>fr",
+        function() require("spectre").toggle() end,
+        desc = "Find and replace",
+      },
+    },
+    opts = {},
   },
 
   -- NOTE: Next Step on Your JSON Neovim Journey: Add/Configure additional "plugins" for kickstart
