@@ -2,7 +2,7 @@ M = {}
 
 M.is_wide = function() return vim.o.co > 150 end
 
-M.disable_format = { "lua_ls", "jsonls", "tsserver", "html", "cssls", "eslint" }
+M.disable_format = { "lua_ls", "jsonls", "tsserver", "html", "cssls", "eslint", "clangd" }
 
 --- Used in a neo-tree handler
 --- @param args { source: string, destination: string }
