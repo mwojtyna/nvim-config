@@ -69,6 +69,7 @@ null_ls.setup({
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.clang_format,
+    null_ls.builtins.formatting.black,
     null_ls.builtins.diagnostics.hadolint,
   },
 })
@@ -93,20 +94,6 @@ local servers = {
   ts_ls = {},
   eslint = {},
   tailwindcss = {},
-  astro = {},
-  prismals = {},
-  gopls = {},
-  rust_analyzer = {
-    ["rust-analyzer"] = {
-      checkOnSave = {
-        command = "clippy",
-      },
-    },
-  },
-  clangd = {},
-  neocmake = {},
-  glsl_analyzer = {},
-
   jsonls = {
     json = {
       schemas = require("schemastore").json.schemas(),
@@ -125,7 +112,21 @@ local servers = {
   },
   taplo = {},
   lemminx = {},
+  astro = {},
+  prismals = {},
   dockerls = {},
+  gopls = {},
+  rust_analyzer = {
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = "clippy",
+      },
+    },
+  },
+  clangd = {},
+  neocmake = {},
+  glsl_analyzer = {},
+  basedpyright = {},
 }
 
 local cmd = {
