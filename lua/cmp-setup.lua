@@ -35,7 +35,11 @@ cmp.setup({
     ["<C-Space>"] = cmp.mapping.complete({}),
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
     ["<Tab>"] = cmp.mapping(function(fallback)
-      local copilot = require("copilot.suggestion")
+      local result, copilot = pcall(require, "copilot.suggestion")
+      if not result then
+        fallback()
+        return
+      end
 
       if copilot.is_visible() then
         copilot.accept()
