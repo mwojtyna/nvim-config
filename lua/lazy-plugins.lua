@@ -657,17 +657,18 @@ require("lazy").setup({
     ft = { "markdown" },
     keys = { { "<leader>M", ":MarkdownPreview<CR>", desc = "Open [m]arkdown preview" } },
     build = function() vim.fn["mkdp#util#install"]() end,
+    config = function() vim.g.mkdp_auto_close = false end,
   },
 
   {
     "zbirenbaum/copilot.lua",
-    enabled = false,
+    enabled = true,
     cmd = "Copilot",
     config = function()
       require("copilot").setup({
         suggestion = { auto_trigger = true },
       })
-      require("copilot.command").disable()
+      -- require("copilot.command").disable()
     end,
   },
 
