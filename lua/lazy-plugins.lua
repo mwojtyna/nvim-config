@@ -83,7 +83,7 @@ require("lazy").setup({
     event = "BufRead",
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
-      { "williamboman/mason.nvim", opts = {}, tag = "v1.11.0" },
+      { "williamboman/mason.nvim", opts = {} },
       "nvimtools/none-ls.nvim",
       "jay-babu/mason-null-ls.nvim",
       { "mason-org/mason-lspconfig.nvim", tag = "v1.32.0" },
