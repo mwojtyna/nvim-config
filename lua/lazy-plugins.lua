@@ -80,6 +80,7 @@ require("lazy").setup({
   {
     -- LSP Configuration & Plugins
     "neovim/nvim-lspconfig",
+    tag = "v2.5.0",
     event = "BufRead",
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
