@@ -662,17 +662,6 @@ require("lazy").setup({
   },
 
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    config = function()
-      require("copilot").setup({
-        suggestion = { auto_trigger = true },
-      })
-      require("copilot.command").disable()
-    end,
-  },
-
-  {
     "dmmulroy/tsc.nvim",
     cmd = { "TSC" },
     opts = {},
