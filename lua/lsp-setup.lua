@@ -126,7 +126,18 @@ local servers = {
   clangd = {},
   neocmake = {},
   glsl_analyzer = {},
-  basedpyright = {},
+  basedpyright = {
+    basedpyright = {
+      analysis = {
+        inlayHints = {
+          variableTypes = false,
+          functionReturnTypes = false,
+          callArgumentNames = true,
+          genericTypes = false,
+        },
+      },
+    },
+  },
 }
 
 local cmd = {
