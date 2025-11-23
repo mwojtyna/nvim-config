@@ -17,8 +17,8 @@ cmp.setup({
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
-  --- @diagnostic disable-next-line: missing-fields
   formatting = {
+    fields = { "abbr", "kind", "menu" },
     format = require("lspkind").cmp_format({
       mode = "symbol_text", -- show only symbol annotations
       show_labelDetails = true, -- show labelDetails in menu. Disabled by default
