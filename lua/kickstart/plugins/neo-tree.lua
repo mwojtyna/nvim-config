@@ -1,8 +1,20 @@
---- @type { setup: function }
-M = {}
+-- Neo-tree is a Neovim plugin to browse the file system
+-- https://github.com/nvim-neo-tree/neo-tree.nvim
 
-M.setup = function()
-  require("neo-tree").setup({
+return {
+  "nvim-neo-tree/neo-tree.nvim",
+  version = "*",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    "MunifTanjim/nui.nvim",
+  },
+  lazy = false,
+  keys = {
+    { "<leader>o", ":Neotree toggle<CR>", desc = "NeoTree toggle", silent = true },
+  },
+  --- @type neotree.Config
+  opts = {
     default_component_configs = {
       git_status = {
         symbols = {
@@ -44,20 +56,9 @@ M.setup = function()
       },
       hijack_netrw_behavior = "open_current",
     },
-    event_handlers = {
-      { event = require("neo-tree.events").FILE_MOVED, handler = require("utils").on_file_remove },
-      { event = require("neo-tree.events").FILE_RENAMED, handler = require("utils").on_file_remove },
-    },
-  })
-end
-
--- Setup neo-tree when opened a directory (`nvim .`)
-vim.api.nvim_create_autocmd("BufEnter", {
-  callback = function()
-    if vim.fn.isdirectory(vim.fn.expand("%:p")) == 1 then
-      M.setup()
-    end
-  end,
-})
-
-return M
+    -- event_handlers = {
+    --   { event = require("neo-tree.events").FILE_MOVED, handler = require("utils").on_file_remove },
+    --   { event = require("neo-tree.events").FILE_RENAMED, handler = require("utils").on_file_remove },
+    -- },
+  },
+}

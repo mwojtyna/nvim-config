@@ -1,4 +1,7 @@
-# Avoid having to commit every day
-lazy-lock.json
+tags
+test.sh
+.luarc.json
+nvim
+
 spell/
-.DS_Store
+lazy-lock.json

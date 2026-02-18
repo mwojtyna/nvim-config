@@ -9,8 +9,8 @@ vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+-- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+-- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
@@ -29,8 +29,8 @@ vim.keymap.set("v", "H", "_")
 vim.keymap.set("v", "L", "$")
 
 -- Package managers
-vim.keymap.set("n", "<leader>pl", require("lazy").show, { desc = "Open lazy" })
-vim.keymap.set("n", "<leader>pm", require("mason.ui").open, { desc = "Open mason" })
+-- vim.keymap.set("n", "<leader>pl", require("lazy").show, { desc = "Open lazy" })
+-- vim.keymap.set("n", "<leader>pm", require("mason.ui").open, { desc = "Open mason" })
 
 -- Center screen after half down/up
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -55,5 +55,17 @@ vim.keymap.set("n", "<leader>n", function()
     vim.cmd.new()
   end
 end, { desc = "New file" })
+
+-- [[ Basic Autocommands ]]
+--  See `:help lua-guide-autocommands`
+
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.hl.on_yank()`
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function() vim.hl.on_yank() end,
+})
 
 -- vim: ts=2 sts=2 sw=2 et
