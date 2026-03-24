@@ -138,6 +138,7 @@ local servers = {
       },
     },
   },
+  tinymist = {},
 }
 
 local cmd = {

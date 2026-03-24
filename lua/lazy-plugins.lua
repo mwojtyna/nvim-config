@@ -772,6 +772,18 @@ require("lazy").setup({
     opts = {},
   },
 
+  { "kaarmu/typst.vim", ft = { "typst" } },
+  {
+    "chomosuke/typst-preview.nvim",
+    cmd = { "TypstPreview", "TypstPreviewToggle", "TypstPreviewUpdate" },
+    build = function() require("typst-preview").update() end,
+    opts = {
+      dependencies_bin = {
+        tinymist = "tinymist",
+      },
+    },
+  },
+
   -- NOTE: Next Step on Your JSON Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
