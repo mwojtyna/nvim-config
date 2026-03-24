@@ -68,5 +68,6 @@ vim.o.shiftwidth = 4
 vim.o.diffopt = "internal,filler,closeoff,linematch:60"
 
 vim.o.scrolloff = 10
+vim.o.winborder = "rounded"
 
 -- vim: ts=2 sts=2 sw=2 et
