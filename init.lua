@@ -31,10 +31,6 @@ require("treesitter-setup")
 -- (fuzzy finder)
 require("telescope-setup")
 
--- [[ Configure neo-tree ]]
--- (file tree)
-require("neo-tree-setup")
-
 -- [[ Configure LSP ]]
 -- (Language Server Protocol)
 require("lsp-setup")
