@@ -820,7 +820,6 @@ require("lazy").setup({
     opts = {},
   },
 
-  { "kaarmu/typst.vim", ft = { "typst" } },
   {
     "chomosuke/typst-preview.nvim",
     cmd = { "TypstPreview", "TypstPreviewToggle", "TypstPreviewUpdate" },
