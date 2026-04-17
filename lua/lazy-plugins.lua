@@ -824,6 +824,8 @@ require("lazy").setup({
     "chomosuke/typst-preview.nvim",
     cmd = { "TypstPreview", "TypstPreviewToggle", "TypstPreviewUpdate" },
     build = function() require("typst-preview").update() end,
+    ft = { "typst" },
+    keys = { { "<leader>M", ":TypstPreview<CR>", desc = "Open Typst preview" } },
     opts = {
       dependencies_bin = {
         tinymist = "tinymist",
