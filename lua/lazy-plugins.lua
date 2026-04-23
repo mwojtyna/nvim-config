@@ -719,7 +719,6 @@ require("lazy").setup({
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
-    keys = { { "<leader>M", ":MarkdownPreview<CR>", desc = "Open [m]arkdown preview" } },
     build = function() vim.fn["mkdp#util#install"]() end,
     config = function() vim.g.mkdp_auto_close = false end,
   },
@@ -825,7 +824,6 @@ require("lazy").setup({
     cmd = { "TypstPreview", "TypstPreviewToggle", "TypstPreviewUpdate" },
     build = function() require("typst-preview").update() end,
     ft = { "typst" },
-    keys = { { "<leader>M", ":TypstPreview<CR>", desc = "Open Typst preview" } },
     opts = {
       dependencies_bin = {
         tinymist = "tinymist",
